@@ -8,3 +8,5 @@ global using OmniMarket.Domain.Entities;
 global using AutoMapper;
 global using OmniMarket.Application.DTOs;
 global using OmniMarket.Application.DTOs.Common;
+global using System.Reflection;
+global using Microsoft.Extensions.DependencyInjection;
