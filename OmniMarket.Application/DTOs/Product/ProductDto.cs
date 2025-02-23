@@ -1,7 +1,6 @@
-﻿
-namespace OmniMarket.Application.DTOs
+﻿namespace OmniMarket.Application.DTOs.Product
 {
-   public class ProductDto : BaseDTO
+   public class ProductDto : BaseDto
     {
         public string Name { get; set; }
         public string? Description { get; set; }

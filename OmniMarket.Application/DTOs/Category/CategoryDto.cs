@@ -1,7 +1,8 @@
-﻿
-namespace OmniMarket.Application.DTOs
+﻿using OmniMarket.Application.DTOs.Product;
+
+namespace OmniMarket.Application.DTOs.Category
 {
-   public class CategoryDto : BaseDTO
+   public class CategoryDto : BaseDto
     {
         public string Name { get; set; }
         public string? Description { get; set; }

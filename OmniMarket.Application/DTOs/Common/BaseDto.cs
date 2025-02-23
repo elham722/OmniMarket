@@ -1,7 +1,7 @@
 ﻿
 namespace OmniMarket.Application.DTOs.Common
 {
-    public class BaseDTO
+    public abstract class BaseDto
     {
         public Guid Id { get; set; }
     }
