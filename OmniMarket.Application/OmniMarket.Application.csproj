@@ -8,10 +8,16 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\OmniMarket.Domain\OmniMarket.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Product\Handlers\Commands\" />
+    <Folder Include="Features\Product\Requests\Commands\" />
   </ItemGroup>
 
 </Project>
