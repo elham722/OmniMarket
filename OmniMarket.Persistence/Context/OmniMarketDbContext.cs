@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OmniMarket.Domain.Entities;
+using OmniMarket.Domain.Entities.Common;
 
 namespace OmniMarket.Persistence.Context
 {

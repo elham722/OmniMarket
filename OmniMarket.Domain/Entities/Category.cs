@@ -1,4 +1,6 @@
 ﻿
+using OmniMarket.Domain.Entities.Common;
+
 namespace OmniMarket.Domain.Entities
 {
     public class Category : BaseEntity
