@@ -12,3 +12,6 @@ global using System.Reflection;
 global using Microsoft.Extensions.DependencyInjection;
 global using MediatR;
 global using OmniMarket.Application.DTOs.Product;
+global using System.Linq.Expressions;
+global using OmniMarket.Domain.Entities.Common;
+global using OmniMarket.Application.Contracts.Persistence;
