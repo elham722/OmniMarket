@@ -1,6 +1,4 @@
 ﻿
-using OmniMarket.Application.DTOs.Product;
-
 namespace OmniMarket.Application.Profiles
 {
     public class MappingProfile : Profile
