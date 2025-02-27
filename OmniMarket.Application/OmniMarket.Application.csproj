@@ -16,8 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Product\Handlers\Commands\" />
-    <Folder Include="Features\Product\Requests\Commands\" />
+    <Folder Include="Features\Product\Commands\" />
   </ItemGroup>
 
 </Project>
