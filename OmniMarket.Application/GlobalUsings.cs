@@ -16,3 +16,4 @@ global using System.Linq.Expressions;
 global using OmniMarket.Domain.Entities.Common;
 global using OmniMarket.Application.Contracts.Persistence;
 global using OmniMarket.Application.DTOs.ProductImage;
+global using OmniMarket.Application.Features.Product.Commands;

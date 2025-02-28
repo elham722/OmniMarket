@@ -9,7 +9,7 @@ namespace OmniMarket.Application.Contracts.Persistence
        Task<IReadOnlyList<T>> GetPagedAsync(int page, int pageSize, Expression<Func<T, object>>? orderBy = null, CancellationToken cancellationToken = default);
        Task<int> GetTotalCountAsync(Expression<Func<T, bool>>? predicate = null, CancellationToken cancellationToken = default);
 
-       Task AddAsync(T entity, CancellationToken cancellationToken = default);
+       Task<T> AddAsync(T entity, CancellationToken cancellationToken = default);
        Task AddRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default);
        Task UpdateAsync(T entity, CancellationToken cancellationToken = default);
        Task DeleteAsync(T entity, CancellationToken cancellationToken = default);
