@@ -1,5 +1,4 @@
-﻿using OmniMarket.Application.DTOs.Product;
-
+﻿
 namespace OmniMarket.Application.DTOs.Category
 {
    public class CategoryDto : BaseDto
