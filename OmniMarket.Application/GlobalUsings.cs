@@ -18,3 +18,5 @@ global using OmniMarket.Application.Contracts.Persistence;
 global using OmniMarket.Application.DTOs.ProductImage;
 global using OmniMarket.Application.Features.Product.Commands;
 global using FluentValidation;
+global using OmniMarket.Application.Features.Product.Validators;
+global using OmniMarket.Application.Features.Behaviors;
