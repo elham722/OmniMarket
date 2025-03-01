@@ -20,3 +20,5 @@ global using OmniMarket.Application.Features.Product.Commands;
 global using FluentValidation;
 global using OmniMarket.Application.Features.Product.Validators;
 global using OmniMarket.Application.Features.Behaviors;
+global using OmniMarket.Application.Exceptions;
+global using FluentValidation.Results;
