@@ -5,15 +5,24 @@ namespace OmniMarket.Application.Profiles
     {
         public MappingProfile()
         {
-            CreateMap<Product,ProductDto>().ReverseMap();
-            CreateMap<Product,ProductsListDto>().ReverseMap();
-            CreateMap<Product, CreateProductDto>().ReverseMap();
-            CreateMap<Product, CreateProductCommand>().ReverseMap();
+            #region Product
 
+            CreateMap<Product, ProductDto>().ReverseMap();
+            CreateMap<Product, ProductsListDto>().ReverseMap();
+            CreateMap<Product, CreateProductDto>().ReverseMap();
+            CreateMap<Product, UpdateProductDto>().ReverseMap();
+
+
+            CreateMap<Product, CreateProductCommand>().ReverseMap();
             CreateMap<Product, UpdateProductCommand>().ReverseMap();
 
-            CreateMap<ProductImage,ProductImageDto>().ReverseMap();
-            CreateMap<ProductImage,CreateProductImageDto>().ReverseMap();
+            CreateMap<ProductImage, ProductImageDto>().ReverseMap();
+            CreateMap<ProductImage, UpdateProductImageDto>().ReverseMap();
+            CreateMap<ProductImage, CreateProductImageDto>().ReverseMap(); 
+
+            #endregion
+
+
         }
     }
 }
