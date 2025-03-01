@@ -8,9 +8,9 @@ namespace OmniMarket.Application.Features.Product.Commands
            var product= await productRepository.GetByIdAsync(request.Id, cancellationToken);
 
           if (product == null)
-            throw new NotFoundException(nameof(Product), request.Id);
+            throw new NotFoundException(nameof(Domain.Entities.Product), request.Id);
 
-            await productRepository.DeleteAsync(product,cancellationToken);
+          await productRepository.DeleteAsync(product,cancellationToken);
            return Unit.Value;
         }
     }
