@@ -5,6 +5,16 @@ using OmniMarket.Persistence.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigins", b =>
+    {
+        b.WithOrigins() 
+            .AllowAnyMethod()
+            .AllowAnyHeader() 
+            .AllowCredentials(); 
+    });
+});
 
 builder.Services.AddControllers();
 
@@ -32,7 +42,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
+app.UseCors("AllowSpecificOrigins");
 app.MapControllers();
 
 app.Run();
