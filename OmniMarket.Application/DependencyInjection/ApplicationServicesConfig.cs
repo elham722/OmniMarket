@@ -1,7 +1,6 @@
-﻿
-namespace OmniMarket.Application
+﻿namespace OmniMarket.Application.DependencyInjection
 {
-  public static class ApplicationServiceConfig
+  public static class ApplicationServicesConfig
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
