@@ -18,7 +18,11 @@ namespace OmniMarket.Application.Profiles
 
             CreateMap<ProductImage, ProductImageDto>().ReverseMap();
             CreateMap<ProductImage, UpdateProductImageDto>().ReverseMap();
-            CreateMap<ProductImage, CreateProductImageDto>().ReverseMap(); 
+            CreateMap<ProductImage, CreateProductImageDto>().ReverseMap();
+
+            CreateMap<CreateProductDto, CreateProductCommand>();
+            CreateMap<UpdateProductDto, UpdateProductCommand>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore()); 
 
             #endregion
 

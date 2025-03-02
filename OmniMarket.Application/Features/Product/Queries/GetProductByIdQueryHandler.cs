@@ -7,7 +7,7 @@ namespace OmniMarket.Application.Features.Product.Queries
         public async Task<ProductDto> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
             var product = await productRepository.GetByIdAsync(request.Id,cancellationToken);
-            return mapper.Map<ProductDto>(product);
+            return product != null ? mapper.Map<ProductDto>(product) : null;
         }
     }
 }

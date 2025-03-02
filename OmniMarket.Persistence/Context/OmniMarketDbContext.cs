@@ -16,7 +16,7 @@
             {
                 if (entry.State == EntityState.Added)
                 {
-                    entry.Entity.CreateDate = DateTime.UtcNow;
+                    entry.Entity.CreatedDate = DateTime.UtcNow;
                    
                     if (entry.Entity.CreatedById == Guid.Empty)
                     {
@@ -45,7 +45,7 @@
             {
                 if (entry.State == EntityState.Added)
                 {
-                    entry.Entity.CreateDate = DateTime.UtcNow;
+                    entry.Entity.CreatedDate = DateTime.UtcNow;
                     if (entry.Entity.CreatedById == Guid.Empty)
                     {
                         entry.Entity.CreatedById = Guid.Parse("00000000-0000-0000-0000-000000000001");
