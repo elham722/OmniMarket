@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmniMarket.Infrastructure",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmniMarket.Persistence", "OmniMarket.Persistence\OmniMarket.Persistence.csproj", "{9427F702-83B2-4638-AE7C-6314408A473B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmniMarket.Api", "OmniMarket.Api\OmniMarket.Api.csproj", "{D8C5E396-AD29-46F9-8C42-16698FC70443}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{9427F702-83B2-4638-AE7C-6314408A473B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9427F702-83B2-4638-AE7C-6314408A473B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9427F702-83B2-4638-AE7C-6314408A473B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8C5E396-AD29-46F9-8C42-16698FC70443}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8C5E396-AD29-46F9-8C42-16698FC70443}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8C5E396-AD29-46F9-8C42-16698FC70443}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8C5E396-AD29-46F9-8C42-16698FC70443}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +64,7 @@ Global
 		{F6BB5F03-3A15-4EA3-BD0B-843F9FD2FE6D} = {BC4AE071-07C8-462C-91D3-D38254059A82}
 		{4FBCD271-03BB-4589-A390-C57E337DEB27} = {B8CF573E-7324-49DC-BBC6-56B0CA48254F}
 		{9427F702-83B2-4638-AE7C-6314408A473B} = {B8CF573E-7324-49DC-BBC6-56B0CA48254F}
+		{D8C5E396-AD29-46F9-8C42-16698FC70443} = {FF1C0839-375C-4C23-9869-39CBD7B628D7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CD6A6F4B-C1BE-45C9-AFC1-6F8B89F43D3D}

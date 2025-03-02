@@ -2,7 +2,7 @@
 {
     public static class PersistenceServicesConfig
     {
-        public static IServiceCollection PersistenceServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("OmniMarketConnectionString");
             if (string.IsNullOrEmpty(connectionString))
