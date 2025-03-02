@@ -11,3 +11,4 @@ global using OmniMarket.Persistence.Context;
 global using OmniMarket.Persistence.Repositories;
 global using OmniMarket.Domain.Entities;
 global using OmniMarket.Domain.Entities.Common;
+global using System.Linq.Expressions;
