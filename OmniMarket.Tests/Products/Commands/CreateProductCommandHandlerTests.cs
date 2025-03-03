@@ -1,5 +1,4 @@
-﻿
-namespace OmniMarket.Tests
+﻿namespace OmniMarket.Tests.Products.Commands
 {
     public class CreateProductCommandHandlerTests
     {
