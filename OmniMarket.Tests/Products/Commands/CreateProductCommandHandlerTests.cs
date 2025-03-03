@@ -1,4 +1,5 @@
-﻿namespace OmniMarket.Tests.Products.Commands
+﻿
+namespace OmniMarket.Tests.Products.Commands
 {
     public class CreateProductCommandHandlerTests
     {
@@ -17,7 +18,7 @@
         }
 
         [Fact]
-        public async Task Handle_ValidRequest_ReturnsProductId()
+        public async Task Handle_ValidRequest_ReturnsSuccessResponse()
         {
             // Arrange
             var command = new CreateProductCommand
@@ -33,7 +34,8 @@
             };
 
             var product = _mapper.Map<Product>(command);
-            product.Id = Guid.NewGuid();
+            var expectedProductId = Guid.NewGuid();
+            product.Id = expectedProductId;
 
             _productRepositoryMock
                 .Setup(repo => repo.AddAsync(It.IsAny<Product>(), It.IsAny<CancellationToken>()))
@@ -45,9 +47,40 @@
             var result = await handler.Handle(command, CancellationToken.None);
 
             // Assert
-            Assert.NotEqual(Guid.Empty, result);
-            Assert.Equal(product.Id, result);
+            Assert.True(result.Success);
+            Assert.Equal("محصول با موفقیت ایجاد شد.", result.Message);
+            Assert.Empty(result.Errors);
+            Assert.Equal(expectedProductId, result.Id);
             _productRepositoryMock.Verify(repo => repo.AddAsync(It.IsAny<Product>(), It.IsAny<CancellationToken>()), Times.Once());
+        }
+
+        [Fact]
+        public async Task Handle_InvalidRequest_ReturnsFailureResponseWithValidationErrors()
+        {
+            // Arrange
+            var command = new CreateProductCommand
+            {
+                Name = "", // نام خالی - خطای اعتبارسنجی
+                Description = "لپ‌تاپ با کارایی بالا",
+                Price = -1000m, // قیمت منفی - خطای اعتبارسنجی
+                Stock = -10, // موجودی منفی - خطای اعتبارسنجی
+                ProductImages = new List<CreateProductImageDto>()
+            };
+
+            var handler = new CreateProductCommandHandler(_productRepositoryMock.Object, _mapper);
+
+            // Act
+            var result = await handler.Handle(command, CancellationToken.None);
+
+            // Assert
+            Assert.False(result.Success);
+            Assert.Equal("ایجاد محصول ناموفق بود.", result.Message);
+            Assert.NotEmpty(result.Errors);
+            Assert.Contains("نام محصول اجباری است.", result.Errors);
+            Assert.Contains("قیمت باید بزرگ‌تر یا مساوی صفر باشد.", result.Errors);
+            Assert.Contains("موجودی باید بزرگ‌تر یا مساوی صفر باشد.", result.Errors);
+            Assert.Equal(Guid.Empty, result.Id);
+            _productRepositoryMock.Verify(repo => repo.AddAsync(It.IsAny<Product>(), It.IsAny<CancellationToken>()), Times.Never());
         }
     }
 }
