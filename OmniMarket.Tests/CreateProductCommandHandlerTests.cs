@@ -1,12 +1,4 @@
-﻿using AutoMapper;
-using Moq;
-using OmniMarket.Application.Features.Product.Commands;
-using OmniMarket.Domain.Entities;
-using OmniMarket.Application.Contracts.Persistence;
-using Xunit;
-using OmniMarket.Application.DTOs.ProductImage;
-using OmniMarket.Application.Profiles;
-
+﻿
 namespace OmniMarket.Tests
 {
     public class CreateProductCommandHandlerTests

@@ -1,0 +1,13 @@
+﻿global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Text;
+global using System.Threading.Tasks;
+global using AutoMapper;
+global using Moq;
+global using OmniMarket.Application.Features.Product.Commands;
+global using OmniMarket.Domain.Entities;
+global using OmniMarket.Application.Contracts.Persistence;
+global using Xunit;
+global using OmniMarket.Application.DTOs.ProductImage;
+global using OmniMarket.Application.Profiles;
