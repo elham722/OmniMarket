@@ -1,7 +1,15 @@
+using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
+using OmniMarket.UI.Services.Base;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddHttpClient<IClient, Client>(c => c.BaseAddress = new Uri(builder.Configuration.GetSection("ApiAddress").Value));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
 

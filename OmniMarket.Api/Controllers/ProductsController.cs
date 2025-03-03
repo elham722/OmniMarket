@@ -1,19 +1,30 @@
 ﻿
+using OmniMarket.Application.Exceptions;
+
 namespace OmniMarket.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     public class ProductsController(IMediator mediator, IMapper mapper) : ControllerBase
     {
-        
-        // POST: api/Products
+
+        // OmniMarket.Api/Controllers/ProductsController.cs
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateProductDto dto, CancellationToken cancellationToken)
         {
-            var command = mapper.Map<CreateProductCommand>(dto);
-            var productId = await mediator.Send(command, cancellationToken);
-            var response = ApiResponse<Guid>.Success(productId, "محصول با موفقیت ایجاد شد");
-            return CreatedAtAction(nameof(GetById), new { id = productId }, response);
+            try
+            {
+                var command = mapper.Map<CreateProductCommand>(dto);
+                var productId = await mediator.Send(command, cancellationToken);
+                var response = ApiResponse<Guid>.Success(productId, "محصول با موفقیت ایجاد شد");
+                return CreatedAtAction(nameof(GetById), new { id = productId }, response);
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                var validationErrors = string.Join("; ", ex.Errors.Select(e => $"{e.PropertyName}: {e.ErrorMessage}"));
+                var response = ApiResponse<object>.Error("خطای اعتبارسنجی", validationErrors);
+                return BadRequest(response);
+            }
         }
 
         // GET: api/Products/{id}
@@ -41,25 +52,45 @@ namespace OmniMarket.Api.Controllers
             return Ok(response);
         }
 
-        // PUT: api/Products/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateProductDto dto, CancellationToken cancellationToken)
         {
-            var command = mapper.Map<UpdateProductCommand>(dto);
-            command.Id = id; // Id رو دستی تنظیم می‌کنیم
-            var updatedProductId = await mediator.Send(command, cancellationToken);
-            var response = ApiResponse<Guid>.Success(updatedProductId, "محصول با موفقیت به‌روزرسانی شد");
-            return Ok(response);
+            try
+            {
+                var command = mapper.Map<UpdateProductCommand>(dto);
+                command.Id = id;
+                var updatedProductId = await mediator.Send(command, cancellationToken);
+                var response = ApiResponse<Guid>.Success(updatedProductId, "محصول با موفقیت به‌روزرسانی شد");
+                return Ok(response);
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                var validationErrors = string.Join("; ", ex.Errors.Select(e => $"{e.PropertyName}: {e.ErrorMessage}"));
+                var response = ApiResponse<object>.Error("خطای اعتبارسنجی", validationErrors);
+                return BadRequest(response);
+            }
+            catch (NotFoundException ex)
+            {
+                var response = ApiResponse<object>.Error(ex.Message);
+                return NotFound(response);
+            }
         }
 
-        // DELETE: api/Products/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
         {
-            var command = new DeleteProductCommand { Id = id };
-            await mediator.Send(command, cancellationToken);
-            var response = ApiResponse<object>.Success(null, "محصول با موفقیت حذف شد");
-            return Ok(response);
+            try
+            {
+                var command = new DeleteProductCommand { Id = id };
+                await mediator.Send(command, cancellationToken);
+                var response = ApiResponse<object>.Success(null, "محصول با موفقیت حذف شد");
+                return Ok(response);
+            }
+            catch (NotFoundException ex)
+            {
+                var response = ApiResponse<object>.Error(ex.Message);
+                return NotFound(response);
+            }
         }
     }
 }
