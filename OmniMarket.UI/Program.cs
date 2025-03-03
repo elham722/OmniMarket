@@ -9,7 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpClient<IClient, Client>(c => c.BaseAddress = new Uri(builder.Configuration.GetSection("ApiAddress").Value));
 
-builder.Services.AddSingleton<ILocalStorageService, LocalStorageService>();
+builder.Services.AddScoped<ILocalStorageService, LocalStorageService>();
+builder.Services.AddHttpContextAccessor();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

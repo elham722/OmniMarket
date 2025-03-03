@@ -1,7 +1,9 @@
 ﻿
+using OmniMarket.Application.Responses;
+
 namespace OmniMarket.Application.Features.Product.Commands
 {
-   public class UpdateProductCommand:IRequest<Guid>
+   public class UpdateProductCommand:IRequest<BaseCommandResponse>
     {
         public Guid Id { get; set; }
         public string? Name { get; set; }

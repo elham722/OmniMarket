@@ -8,23 +8,20 @@ namespace OmniMarket.Api.Controllers
     public class ProductsController(IMediator mediator, IMapper mapper) : ControllerBase
     {
 
-        // OmniMarket.Api/Controllers/ProductsController.cs
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateProductDto dto, CancellationToken cancellationToken)
         {
-            try
+            var command = mapper.Map<CreateProductCommand>(dto);
+            var response = await mediator.Send(command, cancellationToken);
+
+            if (!response.Success)
             {
-                var command = mapper.Map<CreateProductCommand>(dto);
-                var productId = await mediator.Send(command, cancellationToken);
-                var response = ApiResponse<Guid>.Success(productId, "محصول با موفقیت ایجاد شد");
-                return CreatedAtAction(nameof(GetById), new { id = productId }, response);
+                var apiResponse = ApiResponse<object>.Error(response.Message, string.Join("; ", response.Errors));
+                return BadRequest(apiResponse);
             }
-            catch (FluentValidation.ValidationException ex)
-            {
-                var validationErrors = string.Join("; ", ex.Errors.Select(e => $"{e.PropertyName}: {e.ErrorMessage}"));
-                var response = ApiResponse<object>.Error("خطای اعتبارسنجی", validationErrors);
-                return BadRequest(response);
-            }
+
+            var apiResponseSuccess = ApiResponse<Guid>.Success(response.Id, response.Message);
+            return CreatedAtAction(nameof(GetById), new { id = response.Id }, apiResponseSuccess);
         }
 
         // GET: api/Products/{id}
@@ -55,42 +52,34 @@ namespace OmniMarket.Api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateProductDto dto, CancellationToken cancellationToken)
         {
-            try
+            var command = mapper.Map<UpdateProductCommand>(dto);
+            command.Id = id;
+            var response = await mediator.Send(command, cancellationToken);
+
+            if (!response.Success)
             {
-                var command = mapper.Map<UpdateProductCommand>(dto);
-                command.Id = id;
-                var updatedProductId = await mediator.Send(command, cancellationToken);
-                var response = ApiResponse<Guid>.Success(updatedProductId, "محصول با موفقیت به‌روزرسانی شد");
-                return Ok(response);
+                var apiResponse = ApiResponse<object>.Error(response.Message, string.Join("; ", response.Errors));
+                return BadRequest(apiResponse);
             }
-            catch (FluentValidation.ValidationException ex)
-            {
-                var validationErrors = string.Join("; ", ex.Errors.Select(e => $"{e.PropertyName}: {e.ErrorMessage}"));
-                var response = ApiResponse<object>.Error("خطای اعتبارسنجی", validationErrors);
-                return BadRequest(response);
-            }
-            catch (NotFoundException ex)
-            {
-                var response = ApiResponse<object>.Error(ex.Message);
-                return NotFound(response);
-            }
+
+            var apiResponseSuccess = ApiResponse<Guid>.Success(response.Id, response.Message);
+            return Ok(apiResponseSuccess);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
         {
-            try
+            var command = new DeleteProductCommand { Id = id };
+            var response = await mediator.Send(command, cancellationToken);
+
+            if (!response.Success)
             {
-                var command = new DeleteProductCommand { Id = id };
-                await mediator.Send(command, cancellationToken);
-                var response = ApiResponse<object>.Success(null, "محصول با موفقیت حذف شد");
-                return Ok(response);
+                var apiResponse = ApiResponse<object>.Error(response.Message, string.Join("; ", response.Errors));
+                return NotFound(apiResponse);
             }
-            catch (NotFoundException ex)
-            {
-                var response = ApiResponse<object>.Error(ex.Message);
-                return NotFound(response);
-            }
+
+            var apiResponseSuccess = ApiResponse<object>.Success(null, response.Message);
+            return Ok(apiResponseSuccess);
         }
     }
 }
