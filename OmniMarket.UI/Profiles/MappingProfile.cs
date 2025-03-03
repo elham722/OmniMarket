@@ -1,0 +1,38 @@
+﻿
+using AutoMapper;
+using OmniMarket.Application.DTOs.Product;
+using OmniMarket.Application.DTOs.ProductImage;
+using OmniMarket.UI.Models.Product;
+
+
+namespace OmniMarket.UI.Profiles
+{
+    public class MappingProfile : Profile
+    {
+        public MappingProfile()
+        {
+            #region Product
+
+            // ProductDto -> ProductViewModel
+            CreateMap<ProductDto, ProductViewModel>();
+            CreateMap<ProductImageDto, ProductImageViewModel>();
+
+            // CreateProductViewModel -> CreateProductDto
+            CreateMap<CreateProductViewModel, CreateProductDto>();
+            CreateMap<CreateProductImageViewModel, CreateProductImageDto>();
+
+            // UpdateProductViewModel -> CreateProductDto (برای ویرایش)
+            CreateMap<UpdateProductViewModel, CreateProductDto>();
+            CreateMap<UpdateProductImageViewModel, CreateProductImageDto>();
+
+            // CreateProductDto -> CreateProductViewModel/UpdateProductViewModel
+            CreateMap<CreateProductDto, CreateProductViewModel>();
+            CreateMap<CreateProductDto, UpdateProductViewModel>();
+            CreateMap<CreateProductImageDto, CreateProductImageViewModel>();
+            CreateMap<CreateProductImageDto, UpdateProductImageViewModel>();
+            #endregion
+
+
+        }
+    }
+}

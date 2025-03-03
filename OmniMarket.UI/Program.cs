@@ -2,6 +2,7 @@ using System.Reflection;
 using Hanssens.Net;
 using Microsoft.Extensions.DependencyInjection;
 using OmniMarket.UI.Contracts;
+using OmniMarket.UI.Profiles;
 using OmniMarket.UI.Services;
 using OmniMarket.UI.Services.Base;
 
@@ -10,8 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient<IClient, Client>(c => c.BaseAddress = new Uri(builder.Configuration.GetSection("ApiAddress").Value));
 
 builder.Services.AddScoped<ILocalStorageService, LocalStorageService>();
+// OmniMarket.UI/Program.cs
+builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddHttpContextAccessor();
-
+// OmniMarket.UI/Program.cs
+builder.Services.AddAutoMapper(typeof(Program), typeof(MappingProfile));
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

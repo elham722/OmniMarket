@@ -1,21 +1,34 @@
-﻿
+﻿// OmniMarket.Application/Common/Models/ApiResponse.cs
 namespace OmniMarket.Application.Common.Models
 {
-    public class ApiResponse<T>(bool status, string message, T data, string validationErrors = null)
+    public class ApiResponse<T>
     {
-        public bool Status { get; set; } = status;
-        public string Message { get; set; } = message;
-        public string ValidationErrors { get; set; } = validationErrors;
-        public T Data { get; set; } = data;
+        public bool Status { get; set; }
+        public string Message { get; set; }
+        public string ValidationErrors { get; set; }
+        public T Data { get; set; }
 
-        public static ApiResponse<T> Success(T data, string message = "درخواست با موفقیت انجام شد")
+        // سازنده بدون پارامتر
+        public ApiResponse()
+        {
+        }
+
+        public ApiResponse(bool status, string message, T data, string validationErrors = null)
+        {
+            Status = status;
+            Message = message;
+            Data = data;
+            ValidationErrors = validationErrors;
+        }
+
+        public static ApiResponse<T> Success(T data, string message = "Operation successful")
         {
             return new ApiResponse<T>(true, message, data);
         }
 
-        public static ApiResponse<T> Error(string message, string validationErrors = null, T data = default)
+        public static ApiResponse<T> Error(string message, string validationErrors = null)
         {
-            return new ApiResponse<T>(false, message, data, validationErrors);
+            return new ApiResponse<T>(false, message, default, validationErrors);
         }
     }
 }
