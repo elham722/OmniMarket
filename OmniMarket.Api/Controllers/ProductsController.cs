@@ -1,10 +1,12 @@
 ﻿
+using Microsoft.AspNetCore.Authorization;
 using OmniMarket.Application.Exceptions;
 
 namespace OmniMarket.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class ProductsController(IMediator mediator, IMapper mapper) : ControllerBase
     {
 
