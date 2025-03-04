@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmniMarket.Tests", "OmniMar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmniMarket.UI", "OmniMarket.UI\OmniMarket.UI.csproj", "{BA95FB92-85CB-4ECD-8C04-D07738A5EA32}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmniMarket.Identity", "OmniMarket.Identity\OmniMarket.Identity.csproj", "{2EAAC383-C07E-4E43-AFAE-A10F6F2D04D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{BA95FB92-85CB-4ECD-8C04-D07738A5EA32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA95FB92-85CB-4ECD-8C04-D07738A5EA32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA95FB92-85CB-4ECD-8C04-D07738A5EA32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EAAC383-C07E-4E43-AFAE-A10F6F2D04D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EAAC383-C07E-4E43-AFAE-A10F6F2D04D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EAAC383-C07E-4E43-AFAE-A10F6F2D04D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EAAC383-C07E-4E43-AFAE-A10F6F2D04D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +85,7 @@ Global
 		{D8C5E396-AD29-46F9-8C42-16698FC70443} = {FF1C0839-375C-4C23-9869-39CBD7B628D7}
 		{E8094641-CB3C-4B81-A52B-BD4D126142E5} = {2121B39E-23AF-4AEA-8976-2DE9A3C528D9}
 		{BA95FB92-85CB-4ECD-8C04-D07738A5EA32} = {C0504713-94EA-4F20-87E6-DDB3081C7FC5}
+		{2EAAC383-C07E-4E43-AFAE-A10F6F2D04D0} = {B8CF573E-7324-49DC-BBC6-56B0CA48254F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CD6A6F4B-C1BE-45C9-AFC1-6F8B89F43D3D}
