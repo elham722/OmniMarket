@@ -8,14 +8,17 @@ using OmniMarket.UI.Services.Base;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddHttpClient<IClient, Client>(c => c.BaseAddress = new Uri(builder.Configuration.GetSection("ApiAddress").Value));
+// ??? ?????? API
+builder.Services.AddHttpClient<IClient, Client>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7029");
+});
 
 builder.Services.AddScoped<ILocalStorageService, LocalStorageService>();
-// OmniMarket.UI/Program.cs
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddHttpContextAccessor();
-// OmniMarket.UI/Program.cs
 builder.Services.AddAutoMapper(typeof(Program), typeof(MappingProfile));
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -27,21 +30,18 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseRouting();
-
 app.UseAuthorization();
 
 app.MapStaticAssets();
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-
 
 app.Run();

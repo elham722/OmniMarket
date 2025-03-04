@@ -20,7 +20,7 @@ namespace OmniMarket.UI.Services
             _storage = new LocalStorage(config);
 
             // از Session ID به‌عنوان پیشوند برای جدا کردن داده‌های هر کاربر استفاده می‌کنیم
-            _userPrefix = httpContextAccessor.HttpContext.Session.Id;
+           // _userPrefix = httpContextAccessor.HttpContext.Session.Id;
         }
 
         public void ClearStorage(List<string> keys)

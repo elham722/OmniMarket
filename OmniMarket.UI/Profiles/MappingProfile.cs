@@ -22,8 +22,8 @@ namespace OmniMarket.UI.Profiles
             CreateMap<CreateProductImageViewModel, CreateProductImageDto>();
 
             // UpdateProductViewModel -> CreateProductDto (برای ویرایش)
-            CreateMap<UpdateProductViewModel, CreateProductDto>();
-            CreateMap<UpdateProductImageViewModel, CreateProductImageDto>();
+            CreateMap<UpdateProductViewModel, UpdateProductDto>();
+            CreateMap<UpdateProductImageViewModel, UpdateProductImageDto>();
 
             // CreateProductDto -> CreateProductViewModel/UpdateProductViewModel
             CreateMap<CreateProductDto, CreateProductViewModel>();

@@ -61,7 +61,7 @@
         public async Task<IReadOnlyList<T>> GetAllAsync(CancellationToken cancellationToken = default)
         {
             return await _entities
-                .AsNoTracking()
+                .Where(p => !p.IsDeleted).AsNoTracking()
                 .ToListAsync(cancellationToken);
         }
 

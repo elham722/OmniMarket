@@ -1,0 +1,133 @@
+﻿@* OmniMarket.UI/Views/Products/Index.cshtml *@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<OmniMarket.UI.Models.Product.ProductViewModel>
+
+@{
+    ViewData["Title"] = "لیست محصولات";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>لیست محصولات</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+@if (TempData["ValidationErrors"] != null)
+{
+    <div class="alert alert-warning">@TempData["ValidationErrors"]</div>
+}
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">اضافه کردن محصول جدید</a>
+</p>
+
+<table class="table table-striped" id="productsTable">
+    <thead>
+        <tr>
+            <th>نام</th>
+            <th>قیمت</th>
+            <th>موجودی</th>
+            <th>عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr data-id="@product.Id">
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+                <td>@product.Stock</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@product.Id" class="btn btn-info btn-sm">جزئیات</a>
+                    <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-warning btn-sm">ویرایش</a>
+                    <button class="btn btn-danger btn-sm delete-product" data-id="@product.Id">حذف</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Modal برای تأیید حذف -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">تأیید حذف</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>آیا مطمئن هستید که می‌خواهید این محصول را حذف کنید؟</p>
+            </div>
+            <div class="modal-footer">
+                <form id="deleteForm">
+                    @Html.AntiForgeryToken()
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">خیر</button>
+                    <button type="button" class="btn btn-danger" id="confirmDelete">بله</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var productIdToDelete;
+
+            $('.delete-product').on('click', function () {
+                productIdToDelete = $(this).data('id');
+                $('#deleteModal').modal('show');
+            });
+
+            $('#confirmDelete').on('click', function () {
+                var token = $("input[name='__RequestVerificationToken']").val();
+                $.ajax({
+                    url: '@Url.Action("Delete", "Products")',
+                    type: 'POST',
+                    data: {
+                        id: productIdToDelete,
+                        __RequestVerificationToken: token
+                    },
+                    success: function (result) {
+                        if (result.success) {
+                            location.reload();
+                        } else {
+                            $('#deleteModal').modal('hide');
+                            var errorMessage = result.message || 'خطایی رخ داد.';
+                            var validationErrors = result.validationErrors;
+                            $('<div class="alert alert-danger alert-dismissible fade show" role="alert">' +
+                              errorMessage +
+                              (validationErrors ? '<br>' + validationErrors : '') +
+                              '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                              '<span aria-hidden="true">×</span></button></div>')
+                              .prependTo('body');
+                        }
+                    },
+                    error: function (xhr) {
+                        $('#deleteModal').modal('hide');
+                        var errorMessage = xhr.responseJSON?.message || 'خطایی رخ داد.';
+                        var validationErrors = xhr.responseJSON?.validationErrors;
+                        var statusCode = xhr.status;
+                        $('<div class="alert alert-danger alert-dismissible fade show" role="alert">' +
+                          errorMessage +
+                          (validationErrors ? '<br>' + validationErrors : '') +
+                          '<br>Status Code: ' + statusCode +
+                          '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                          '<span aria-hidden="true">×</span></button></div>')
+                          .prependTo('body');
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,110 @@
+﻿@* OmniMarket.UI/Views/Products/Create.cshtml *@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model OmniMarket.UI.Models.Product.CreateProductViewModel
+
+@{
+    ViewData["Title"] = "ایجاد محصول جدید";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>ایجاد محصول جدید</h1>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+@if (TempData["ValidationErrors"] != null)
+{
+    <div class="alert alert-warning">@TempData["ValidationErrors"]</div>
+}
+
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Price" class="control-label"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Stock" class="control-label"></label>
+        <input asp-for="Stock" class="form-control" />
+        <span asp-validation-for="Stock" class="text-danger"></span>
+    </div>
+
+    <div class="form-group" id="ProductImages">
+        <h5>تصاویر محصول</h5>
+        @for (int i = 0; i < Model.ProductImages.Count; i++)
+        {
+            <div class="row mb-2" id="image-@i">
+                <div class="col-md-6">
+                    <label asp-for="ProductImages[i].Url" class="control-label"></label>
+                    <input asp-for="ProductImages[i].Url" class="form-control" />
+                    <span asp-validation-for="ProductImages[i].Url" class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="ProductImages[i].IsPrimary" class="control-label"></label>
+                    <input asp-for="ProductImages[i].IsPrimary" class="form-check-input" />
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-danger btn-sm" onclick="removeImage(@i)">حذف</button>
+                </div>
+            </div>
+        }
+        <button type="button" class="btn btn-primary" onclick="addImage()">افزودن تصویر</button>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="ایجاد" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">برگشت به لیست</a>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
+    <script>
+        var imageIndex = @(Model.ProductImages.Count);
+
+        function addImage() {
+            var html = `
+                <div class="row mb-2" id="image-${imageIndex}">
+                    <div class="col-md-6">
+                        <label class="control-label" for="ProductImages_${imageIndex}__Url">آدرس تصویر</label>
+                        <input class="form-control" type="text" id="ProductImages_${imageIndex}__Url" name="ProductImages[${imageIndex}].Url" />
+                        <span class="text-danger field-validation-valid" data-valmsg-for="ProductImages[${imageIndex}].Url" data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="control-label" for="ProductImages_${imageIndex}__IsPrimary">تصویر اصلی</label>
+                        <input class="form-check-input" type="checkbox" id="ProductImages_${imageIndex}__IsPrimary" name="ProductImages[${imageIndex}].IsPrimary" />
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-danger btn-sm" onclick="removeImage(${imageIndex})">حذف</button>
+                    </div>
+                </div>`;
+            $('#ProductImages').append(html);
+            imageIndex++;
+        }
+
+        function removeImage(index) {
+            $(`#image-${index}`).remove();
+        }
+
+        $(document).ready(function () {
+        @if (Model.ProductImages.Any())
+        {
+            @: imageIndex = @(Model.ProductImages.Count);
+        }
+        });
+    </script>
+}

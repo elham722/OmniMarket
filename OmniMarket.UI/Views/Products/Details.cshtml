@@ -1,0 +1,49 @@
+﻿@* OmniMarket.UI/Views/Products/Details.cshtml *@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model OmniMarket.UI.Models.Product.ProductViewModel
+
+@{
+    ViewData["Title"] = "جزئیات محصول";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>جزئیات محصول</h1>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<div>
+    <h4>@Model.Name</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">شناسه</dt>
+        <dd class="col-sm-10">@Model.Id</dd>
+        <dt class="col-sm-2">نام</dt>
+        <dd class="col-sm-10">@Model.Name</dd>
+        <dt class="col-sm-2">توضیحات</dt>
+        <dd class="col-sm-10">@Model.Description</dd>
+        <dt class="col-sm-2">قیمت</dt>
+        <dd class="col-sm-10">@Model.Price</dd>
+        <dt class="col-sm-2">موجودی</dt>
+        <dd class="col-sm-10">@Model.Stock</dd>
+        <dt class="col-sm-2">تصاویر</dt>
+        <dd class="col-sm-10">
+            @foreach (var image in Model.ProductImages)
+            {
+                <div>
+                    <img src="@image.Url" alt="تصویر محصول" style="width: 100px;" />
+                    @if (image.IsPrimary)
+                    {
+                        <span>(تصویر اصلی)</span>
+                    }
+                </div>
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">ویرایش</a>
+    <a asp-action="Index" class="btn btn-secondary">برگشت به لیست</a>
+</div>
