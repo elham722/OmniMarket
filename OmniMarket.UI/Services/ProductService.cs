@@ -58,10 +58,10 @@ namespace OmniMarket.UI.Services
         {
             try
             {
-                AddBearerToken();
+              
                 var productDto = _mapper.Map<CreateProductDto>(product);
 
-                // TO DO AUTH 
+                AddBearerToken();
 
                 return await client.CreateProductAsync(productDto);
             }
@@ -89,7 +89,7 @@ namespace OmniMarket.UI.Services
         {
             try
             {
-                //AddBearerToken();
+                AddBearerToken();
                 return await client.DeleteProductAsync(id);
             }
             catch (ApiException ex)

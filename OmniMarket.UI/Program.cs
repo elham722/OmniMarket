@@ -1,5 +1,6 @@
 using System.Reflection;
 using Hanssens.Net;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.DependencyInjection;
 using OmniMarket.UI.Contracts;
 using OmniMarket.UI.Profiles;
@@ -8,7 +9,19 @@ using OmniMarket.UI.Services.Base;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ??? ?????? API
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+});
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
+    AddCookie(option =>
+    {
+        option.LoginPath = "/Users/Login";
+    });
+
+
 builder.Services.AddHttpClient<IClient, Client>(client =>
 {
     client.BaseAddress = new Uri("https://localhost:7029");
@@ -16,6 +29,7 @@ builder.Services.AddHttpClient<IClient, Client>(client =>
 
 builder.Services.AddScoped<ILocalStorageService, LocalStorageService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IAuthenticateService, AuthenticateService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddAutoMapper(typeof(Program), typeof(MappingProfile));
 
@@ -33,6 +47,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseCookiePolicy();
+app.UseAuthentication();
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthorization();

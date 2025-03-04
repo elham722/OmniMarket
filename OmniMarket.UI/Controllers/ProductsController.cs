@@ -1,10 +1,13 @@
 ﻿// OmniMarket.UI/Controllers/ProductsController.cs
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OmniMarket.Application.Common.Models;
 using OmniMarket.UI.Contracts;
 using OmniMarket.UI.Models.Product;
 namespace OmniMarket.UI.Controllers
 {
+    [Authorize]
     public class ProductsController(IProductService productService) : Controller
     {
         private readonly IProductService _productService = productService;
