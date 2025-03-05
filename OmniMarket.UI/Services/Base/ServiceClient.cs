@@ -14,16 +14,7 @@
 
 namespace OmniMarket.UI.Services.Base
 {
-    using System = global::System;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Text;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using OmniMarket.Application.DTOs.Product;
-    using OmniMarket.Application.Common.Models;
-    using OmniMarket.Application.DTOs.Product;
-    using OmniMarket.Application.Models.Identity;
+     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial interface IClient

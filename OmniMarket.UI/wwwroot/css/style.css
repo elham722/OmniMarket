@@ -10,7 +10,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #1E293B, #4B5563); /* گرادیانت تیره */
+    background: linear-gradient(135deg, #FD8060, #B0D8A4); /* گرادیانت نارنجی تا سبز */
     overflow: hidden;
     direction: rtl;
 }
@@ -64,13 +64,13 @@ body {
 
     .form-content h1 {
         font-size: 28px;
-        color: #8B5CF6; /* رنگ اصلی (بنفش روشن) */
+        color: #EB4258; /* رنگ اصلی (قرمز پرجنب‌وجوش) */
         margin-bottom: 10px;
     }
 
     .form-content p {
         font-size: 14px;
-        color: #D1D5DB; /* خاکستری روشن */
+        color: #E5E7EB; /* خاکستری خیلی روشن */
         margin-bottom: 20px;
     }
 
@@ -90,7 +90,7 @@ body {
     .input-group label {
         display: block;
         font-size: 12px;
-        color: #D1D5DB;
+        color: #E5E7EB;
         margin-bottom: 5px;
     }
 
@@ -108,7 +108,7 @@ body {
     }
 
         .input-group input:focus {
-            border: 1px solid #8B5CF6; /* رنگ اصلی */
+            border: 1px solid #EB4258; /* رنگ اصلی */
         }
 
         .input-group input::placeholder {
@@ -125,19 +125,19 @@ body {
     display: block;
     text-align: right;
     font-size: 12px;
-    color: #D1D5DB;
+    color: #E5E7EB;
     text-decoration: none;
     margin-bottom: 20px;
 }
 
     .forget-password:hover {
-        color: #8B5CF6; /* رنگ اصلی */
+        color: #EB4258; /* رنگ اصلی */
     }
 
 .login-btn {
     width: 100%;
     padding: 12px;
-    background: #8B5CF6; /* رنگ اصلی */
+    background: #EB4258; /* رنگ اصلی */
     border: none;
     border-radius: 10px;
     color: white;
@@ -147,18 +147,18 @@ body {
 }
 
     .login-btn:hover {
-        background: #312E81; /* رنگ ثانویه (بنفش تیره) */
+        background: #8281A0; /* رنگ ثانویه (بنفش ملایم) */
     }
 
 .signup {
     text-align: center;
     margin-top: 20px;
     font-size: 14px;
-    color: #D1D5DB;
+    color: #E5E7EB;
 }
 
 .signup-link {
-    color: #FACC15; /* رنگ مکمل (زرد روشن) */
+    color: #FEE191; /* رنگ مکمل (زرد روشن) */
     text-decoration: none;
     font-weight: 500;
 }

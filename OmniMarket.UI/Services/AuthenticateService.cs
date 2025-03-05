@@ -1,12 +1,4 @@
 ﻿
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
-using OmniMarket.UI.Contracts;
-using OmniMarket.UI.Services.Base;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using OmniMarket.UI.Models;
-
 namespace OmniMarket.UI.Services
 {
     public class AuthenticateService(IClient client, ILocalStorageService localStorage, IHttpContextAccessor httpContextAccessor) 

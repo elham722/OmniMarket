@@ -1,5 +1,4 @@
-﻿using OmniMarket.UI.Models;
-
+﻿
 namespace OmniMarket.UI.Contracts
 {
     public interface IAuthenticateService

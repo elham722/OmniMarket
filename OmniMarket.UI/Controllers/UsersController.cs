@@ -1,9 +1,4 @@
-﻿// OmniMarket.UI/Controllers/UsersController.cs
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
-using OmniMarket.UI.Contracts;
-using OmniMarket.UI.Models;
-
+﻿
 namespace OmniMarket.UI.Controllers
 {
     public class UsersController : Controller

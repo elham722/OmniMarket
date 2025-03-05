@@ -1,7 +1,4 @@
-﻿using System.Net.Http.Headers;
-using OmniMarket.UI.Contracts;
-using OmniMarket.Application.Common.Models;
-
+﻿
 namespace OmniMarket.UI.Services.Base
 {
     public class BaseHttpService(IClient client, ILocalStorageService localStorage)

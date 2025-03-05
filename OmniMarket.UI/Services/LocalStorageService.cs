@@ -1,7 +1,4 @@
-﻿using Hanssens.Net;
-using Microsoft.AspNetCore.Http;
-using OmniMarket.UI.Contracts;
-
+﻿
 namespace OmniMarket.UI.Services
 {
     public class LocalStorageService : ILocalStorageService

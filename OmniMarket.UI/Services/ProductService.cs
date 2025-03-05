@@ -1,11 +1,4 @@
-﻿// OmniMarket.UI/Services/ProductService.cs
-using AutoMapper;
-using OmniMarket.Application.Common.Models;
-using OmniMarket.Application.DTOs.Product;
-using OmniMarket.UI.Contracts;
-using OmniMarket.UI.Models.Product;
-using OmniMarket.UI.Services.Base;
-
+﻿
 namespace OmniMarket.UI.Services
 {
     public class ProductService(IClient client, ILocalStorageService localStorage, IMapper mapper) : BaseHttpService(client, localStorage), IProductService

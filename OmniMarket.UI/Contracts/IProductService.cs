@@ -1,7 +1,4 @@
-﻿// OmniMarket.UI/Services/Contracts/IProductService.cs
-using OmniMarket.Application.Common.Models;
-using OmniMarket.UI.Models.Product;
-
+﻿
 namespace OmniMarket.UI.Contracts
 {
     public interface IProductService

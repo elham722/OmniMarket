@@ -1,6 +1,4 @@
-﻿// OmniMarket.UI/ViewModels/CreateProductViewModel.cs
-using System.ComponentModel.DataAnnotations;
-
+﻿
 namespace OmniMarket.UI.Models.Product
 {
     public class CreateProductViewModel : ProductFormViewModel

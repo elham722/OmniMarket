@@ -1,6 +1,4 @@
-﻿// OmniMarket.UI/ViewModels/UpdateProductViewModel.cs
-using System.ComponentModel.DataAnnotations;
-
+﻿
 namespace OmniMarket.UI.Models.Product
 {
     public class UpdateProductViewModel : ProductFormViewModel

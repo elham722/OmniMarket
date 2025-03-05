@@ -1,11 +1,3 @@
-using System.Reflection;
-using Hanssens.Net;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.Extensions.DependencyInjection;
-using OmniMarket.UI.Contracts;
-using OmniMarket.UI.Profiles;
-using OmniMarket.UI.Services;
-using OmniMarket.UI.Services.Base;
 
 var builder = WebApplication.CreateBuilder(args);
 

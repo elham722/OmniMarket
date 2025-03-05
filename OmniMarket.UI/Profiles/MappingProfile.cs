@@ -1,10 +1,4 @@
 ﻿
-using AutoMapper;
-using OmniMarket.Application.DTOs.Product;
-using OmniMarket.Application.DTOs.ProductImage;
-using OmniMarket.UI.Models.Product;
-
-
 namespace OmniMarket.UI.Profiles
 {
     public class MappingProfile : Profile

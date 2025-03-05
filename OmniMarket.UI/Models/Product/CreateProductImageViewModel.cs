@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
+﻿
 namespace OmniMarket.UI.Models.Product
 {
     public class CreateProductImageViewModel

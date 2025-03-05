@@ -1,6 +1,4 @@
-﻿// OmniMarket.UI/ViewModels/ProductFormViewModel.cs
-using System.ComponentModel.DataAnnotations;
-
+﻿
 namespace OmniMarket.UI.Models.Product
 {
     public abstract class ProductFormViewModel
