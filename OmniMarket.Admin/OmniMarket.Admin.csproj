@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Views\Shared\_footer.cshtml" />
+    <None Include="Views\Shared\_settings-panel.cshtml" />
+    <None Include="Views\Shared\_sidebar.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OmniMarket.Application\OmniMarket.Application.csproj" />
+    <ProjectReference Include="..\OmniMarket.Infrastructure\OmniMarket.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <partial name="_MetaTags"/>
+    <title>Skydash Admin</title>
+  <partial name="_LinkTags"/>
+</head>
+<body>
+  
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <partial name="_Navbar" />
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_settings-panel.html -->
+            <partial name="_settings-panel" />
+
+            <!-- partial -->
+            <!-- partial:partials/_sidebar.html -->
+            <partial name="_sidebar" />
+            <!-- partial -->
+           @RenderBody()
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <partial name="_ScriptTags"/>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
