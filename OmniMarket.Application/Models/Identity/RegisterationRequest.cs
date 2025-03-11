@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.ComponentModel.DataAnnotations;
-
+﻿
 namespace OmniMarket.Application.Models.Identity
 {
     public class RegisterationRequest
@@ -19,6 +15,7 @@ namespace OmniMarket.Application.Models.Identity
         public string UserName { get; set; }
         [Required]
         [MinLength(6)]
+        [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d).+$", ErrorMessage = "Password must contain at least one letter and one number")]
         public string Password { get; set; }
     }
 }

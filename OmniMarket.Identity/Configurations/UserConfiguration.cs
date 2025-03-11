@@ -1,17 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using OmniMarket.Identity.Models;
-
+﻿
 namespace OmniMarket.Identity.Configurations
 {
     public class UserConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
+           
+            builder.Property(u => u.FirstName)
+                .IsRequired()
+                .HasMaxLength(50);
+
+            builder.Property(u => u.LastName)
+                .IsRequired() 
+                .HasMaxLength(50); 
+
+            // Seed Data
             var hasher = new PasswordHasher<ApplicationUser>();
 
             builder.HasData(
@@ -20,12 +23,12 @@ namespace OmniMarket.Identity.Configurations
                     Id = "05446344-f9cc-4566-bd2c-36791b4e28ed",
                     Email = "admin@localhost.com",
                     NormalizedEmail = "ADMIN@LOCALHOST.COM",
-                    FirstName = "Admin",
-                    LastName = "Adminian",
-                    UserName = "admin@localhost.com",
-                    NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                    PasswordHash = hasher.HashPassword(null, "P@ssword1"),
-                    EmailConfirmed = true,
+                    FirstName = "Elham",
+                    LastName = "Heydari",
+                    UserName = "elham72",
+                    NormalizedUserName = "ELHAM72",
+                    PasswordHash = hasher.HashPassword(null, "H@di1234"),
+                    EmailConfirmed = true
                 },
                 new ApplicationUser
                 {
@@ -37,7 +40,7 @@ namespace OmniMarket.Identity.Configurations
                     UserName = "user@localhost.com",
                     NormalizedUserName = "USER@LOCALHOST.COM",
                     PasswordHash = hasher.HashPassword(null, "P@ssword1"),
-                    EmailConfirmed = true,
+                    EmailConfirmed = true
                 }
             );
         }

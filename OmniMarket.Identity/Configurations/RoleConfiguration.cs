@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace OmniMarket.Identity.Configurations
 {
     public class RoleConfiguration : IEntityTypeConfiguration<IdentityRole>
@@ -15,14 +9,14 @@ namespace OmniMarket.Identity.Configurations
                 new IdentityRole
                 {
                     Id= "9845f909-799c-45fd-9158-58c1336ffddc",
-                    Name= "Employee",
-                    NormalizedName="EMPLOYEE"
+                    Name= "Admin",
+                    NormalizedName="ADMIN"
                 },
                 new IdentityRole
                 {
                     Id = "cb275765-1cac-4652-a03f-f8871dd575d1",
-                    Name = "Administrator",
-                    NormalizedName = "ADMINISTRATOR"
+                    Name = "Client",
+                    NormalizedName = "CLIENT"
                 }
                 );
         }

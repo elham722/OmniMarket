@@ -32,8 +32,8 @@ namespace OmniMarket.Identity.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -165,8 +165,8 @@ namespace OmniMarket.Identity.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "9845f909-799c-45fd-9158-58c1336ffddc", null, "Employee", "EMPLOYEE" },
-                    { "cb275765-1cac-4652-a03f-f8871dd575d1", null, "Administrator", "ADMINISTRATOR" }
+                    { "9845f909-799c-45fd-9158-58c1336ffddc", null, "Admin", "ADMIN" },
+                    { "cb275765-1cac-4652-a03f-f8871dd575d1", null, "Client", "CLIENT" }
                 });
 
             migrationBuilder.InsertData(
@@ -174,8 +174,8 @@ namespace OmniMarket.Identity.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "05446344-f9cc-4566-bd2c-36791b4e28ed", 0, "a4f400ae-fb86-4c37-8461-c82dc0024ff2", "admin@localhost.com", true, "Admin", "Adminian", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAENTKHFcyAGupZ/dcuF+aHrcaLTs8+n6SmYipTeqi+nuOPL+EiwSoDuM1ZPbnvEHewQ==", null, false, "5dc3daf2-6593-4518-98ae-b9638d8c2941", false, "admin@localhost.com" },
-                    { "2ec9f480-7288-4d0f-a1cd-53cc89968b45", 0, "8e35b06a-9104-455e-879e-01cc61f6d33f", "user@localhost.com", true, "System", "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAIAAYagAAAAECAjgZ2p/1lwqcoi7x1BGQiill2fZoGrzdiK/D+bMVC2nLl3NRi+hofmmn5NgizZhg==", null, false, "91dfc5f8-e610-4e8b-8767-06ac9cc3f036", false, "user@localhost.com" }
+                    { "05446344-f9cc-4566-bd2c-36791b4e28ed", 0, "dfe81e6c-cd64-44b0-8b5c-1c5784711898", "admin@localhost.com", true, "Elham", "Heydari", false, null, "ADMIN@LOCALHOST.COM", "ELHAM72", "AQAAAAIAAYagAAAAEHgFbAhDPgto7MEBeLsL/q3MOp4FGurvZF93MiXrTrjYH0xGeadvFzyBX1PCohaawA==", null, false, "9e3ad190-be86-4819-9087-e66cc1058094", false, "elham72" },
+                    { "2ec9f480-7288-4d0f-a1cd-53cc89968b45", 0, "fb30a7be-9063-4df7-ac5f-d31cdb0d386f", "user@localhost.com", true, "System", "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAIAAYagAAAAEI6vBjlmNd6Q0aKgG/kgsxaeYhJxtXOrKvgi5J1LHRutCa6Gc8ucj4K7DJPZYYqo9Q==", null, false, "07e1116d-e7ee-4d1a-9acd-52350a9e5c4d", false, "user@localhost.com" }
                 });
 
             migrationBuilder.InsertData(

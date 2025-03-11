@@ -1,39 +1,21 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using OmniMarket.Application.Constants;
-using OmniMarket.Application.Contracts.Identity;
-using OmniMarket.Application.Models.Identity;
-using OmniMarket.Identity.Models;
+﻿
+using OmniMarket.Application.Exceptions;
 
 namespace OmniMarket.Identity.Services
 {
-    public class AuthService : IAuthService
+    public class AuthService(UserManager<ApplicationUser> userManager,
+        IOptions<JwtSettings> jwtSettings,
+        SignInManager<ApplicationUser> signInManager) : IAuthService
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly JwtSettings _jwtSettings;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-
-        public AuthService(UserManager<ApplicationUser> userManager,
-            IOptions<JwtSettings> jwtSettings,
-            SignInManager<ApplicationUser> signInManager)
-        {
-            _userManager = userManager;
-            _jwtSettings = jwtSettings.Value;
-            _signInManager = signInManager;
-        }
-
-
+        private readonly JwtSettings _jwtSettings = jwtSettings.Value;
+      
         #region Register
         public async Task<RegistrationResponse> Register(RegisterationRequest request)
         {
-            var existingUser = await _userManager.FindByNameAsync(request.UserName);
+            var existingUser = await userManager.FindByNameAsync(request.UserName);
             if (existingUser != null)
             {
-                throw new Exception($"user name '{request.UserName}' already exists.");
+                throw new UserAlreadyExistsException(request.UserName);
             }
 
             var user = new ApplicationUser
@@ -46,41 +28,41 @@ namespace OmniMarket.Identity.Services
             };
 
 
-            var existingEmail = await _userManager.FindByEmailAsync(request.Email);
+            var existingEmail = await userManager.FindByEmailAsync(request.Email);
             if (existingEmail == null)
             {
-                var result = await _userManager.CreateAsync(user, request.Password);
+                var result = await userManager.CreateAsync(user, request.Password);
 
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, "Employee");
+                    await userManager.AddToRoleAsync(user, "Client");
                     return new RegistrationResponse() { UserId = user.Id };
                 }
                 else
                 {
-                    throw new Exception($"{result.Errors}");
+                    throw new RegistrationFailedException(string.Join(", ", result.Errors.Select(e => e.Description)));
                 }
             }
             else
             {
-                throw new Exception($"Email '{request.Email}' already exists.");
+                throw new EmailAlreadyExistsException(request.Email);
             }
         }
         #endregion
 
         public async Task<AuthResponse> Login(AuthRequest request)
         {
-            var user = await _userManager.FindByEmailAsync(request.Email);
+            var user = await userManager.FindByEmailAsync(request.Email);
             if (user == null)
             {
-                throw new Exception($"user with {request.Email} not fount.");
+                throw new UserNotFoundException(request.Email);
             }
 
-            var result = await _signInManager.PasswordSignInAsync(user.UserName, request.Password, false, lockoutOnFailure: false);
+            var result = await signInManager.PasswordSignInAsync(user.UserName, request.Password, false, lockoutOnFailure: false);
 
             if (!result.Succeeded)
             {
-                throw new Exception($"credentials for {request.Email} arent valid.");
+                throw new InvalidCredentialsException(request.Email);
             }
 
             JwtSecurityToken jwtSecurityToken = await GenerateToken(user);
@@ -99,8 +81,8 @@ namespace OmniMarket.Identity.Services
 
         private async Task<JwtSecurityToken> GenerateToken(ApplicationUser user)
         {
-            var userClaims = await _userManager.GetClaimsAsync(user);
-            var roles = await _userManager.GetRolesAsync(user);
+            var userClaims = await userManager.GetClaimsAsync(user);
+            var roles = await userManager.GetRolesAsync(user);
 
             var roleClaims = new List<Claim>();
 

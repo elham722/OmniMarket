@@ -22,3 +22,4 @@ global using OmniMarket.Application.Features.Product.Validators;
 global using OmniMarket.Application.Features.Behaviors;
 global using OmniMarket.Application.Exceptions;
 global using FluentValidation.Results;
+global using System.ComponentModel.DataAnnotations;

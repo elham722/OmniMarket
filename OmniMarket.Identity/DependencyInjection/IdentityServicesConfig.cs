@@ -1,16 +1,4 @@
-﻿using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
-using OmniMarket.Application.Contracts.Identity;
-using OmniMarket.Application.Models.Identity;
-using OmniMarket.Identity.Context;
-using OmniMarket.Identity.Models;
-using OmniMarket.Identity.Services;
-
+﻿
 namespace OmniMarket.Identity.DependencyInjection
 {
   public static class IdentityServicesConfig

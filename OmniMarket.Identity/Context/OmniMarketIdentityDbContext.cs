@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using OmniMarket.Identity.Configurations;
-using OmniMarket.Identity.Models;
-
+﻿
 namespace OmniMarket.Identity.Context
 {
-    public class OmniMarketIdentityDbContext(DbContextOptions<OmniMarketIdentityDbContext> options) : IdentityDbContext<ApplicationUser>(options)
+    public class OmniMarketIdentityDbContext : IdentityDbContext<ApplicationUser>
     {
+        public OmniMarketIdentityDbContext(DbContextOptions<OmniMarketIdentityDbContext> options)
+        :base(options)
+        {
+            
+        }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

@@ -12,8 +12,8 @@ using OmniMarket.Identity.Context;
 namespace OmniMarket.Identity.Migrations
 {
     [DbContext(typeof(OmniMarketIdentityDbContext))]
-    [Migration("20250304083407_vghygt")]
-    partial class vghygt
+    [Migration("20250311072115_addidentity")]
+    partial class addidentity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,14 +55,14 @@ namespace OmniMarket.Identity.Migrations
                         new
                         {
                             Id = "9845f909-799c-45fd-9158-58c1336ffddc",
-                            Name = "Employee",
-                            NormalizedName = "EMPLOYEE"
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "cb275765-1cac-4652-a03f-f8871dd575d1",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
+                            Name = "Client",
+                            NormalizedName = "CLIENT"
                         });
                 });
 
@@ -205,11 +205,13 @@ namespace OmniMarket.Identity.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -261,25 +263,25 @@ namespace OmniMarket.Identity.Migrations
                         {
                             Id = "05446344-f9cc-4566-bd2c-36791b4e28ed",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d6153aba-b6d3-486d-9c61-5d2c62b74ee1",
+                            ConcurrencyStamp = "dfe81e6c-cd64-44b0-8b5c-1c5784711898",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
-                            FirstName = "Admin",
-                            LastName = "Adminian",
+                            FirstName = "Elham",
+                            LastName = "Heydari",
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
-                            NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAECOeVqCC7279baMQze+oYX7RGsp3Eoo3SW/vP2IE43GEfzp3gfdqs3QM0ML2p75cJg==",
+                            NormalizedUserName = "ELHAM72",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHgFbAhDPgto7MEBeLsL/q3MOp4FGurvZF93MiXrTrjYH0xGeadvFzyBX1PCohaawA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e3ceef7a-dca1-4726-abb4-894a2123fa16",
+                            SecurityStamp = "9e3ad190-be86-4819-9087-e66cc1058094",
                             TwoFactorEnabled = false,
-                            UserName = "admin@localhost.com"
+                            UserName = "elham72"
                         },
                         new
                         {
                             Id = "2ec9f480-7288-4d0f-a1cd-53cc89968b45",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "316cd61e-ef68-4103-9ab0-f5f079f770c8",
+                            ConcurrencyStamp = "fb30a7be-9063-4df7-ac5f-d31cdb0d386f",
                             Email = "user@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -287,9 +289,9 @@ namespace OmniMarket.Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAELckfkTZrtktmrkghYbmggE+H8alnw18gVHclbMAhWOieb6WFJDuINfkq5clencTvw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEI6vBjlmNd6Q0aKgG/kgsxaeYhJxtXOrKvgi5J1LHRutCa6Gc8ucj4K7DJPZYYqo9Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0c0047fa-f51b-4176-80e7-a2b5cc204175",
+                            SecurityStamp = "07e1116d-e7ee-4d1a-9acd-52350a9e5c4d",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         });
