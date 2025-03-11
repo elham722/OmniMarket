@@ -4,7 +4,7 @@ namespace OmniMarket.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")] // فقط ادمین‌ها
+    [Authorize(Roles = "Admin")] 
     public class AdminController : ControllerBase
     {
         [HttpGet("dashboard")]
