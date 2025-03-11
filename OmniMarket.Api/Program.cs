@@ -1,5 +1,8 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.OpenApi.Models;
 using OmniMarket.Application.DependencyInjection;
+using OmniMarket.Application.Models.Identity.Validators;
 using OmniMarket.Identity.DependencyInjection;
 using OmniMarket.Infrastructure.DependencyInjection;
 using OmniMarket.Persistence.Context;
@@ -18,7 +21,9 @@ builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddInfrastructureServices();
 builder.Services.AddIdentityServices(builder.Configuration);
 
-
+// FluentValidation
+builder.Services.AddFluentValidationAutoValidation(); 
+builder.Services.AddValidatorsFromAssembly(typeof(RegisterationRequestValidator).Assembly);
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();

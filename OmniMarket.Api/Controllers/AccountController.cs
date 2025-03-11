@@ -1,5 +1,5 @@
-﻿using OmniMarket.Application.Contracts.Identity;
-using OmniMarket.Application.Models.Identity;
+﻿
+using OmniMarket.Application.Exceptions;
 
 namespace OmniMarket.Api.Controllers
 {
@@ -10,13 +10,47 @@ namespace OmniMarket.Api.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<AuthResponse>> Login(AuthRequest request)
         {
-            return Ok(await authService.Login(request));
+            try
+            {
+                return Ok(await authService.Login(request));
+            }
+            catch (UserNotFoundException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (InvalidCredentialsException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred during login.");
+            }
         }
 
         [HttpPost("register")]
         public async Task<ActionResult<RegistrationResponse>> Register(RegisterationRequest request)
         {
-            return Ok(await authService.Register(request));
+            try
+            {
+                return Ok(await authService.Register(request));
+            }
+            catch (UserAlreadyExistsException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (EmailAlreadyExistsException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (RegistrationFailedException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred during registration.");
+            }
         }
 
 

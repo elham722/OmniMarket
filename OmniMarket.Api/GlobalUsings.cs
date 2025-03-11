@@ -12,3 +12,5 @@ global using OmniMarket.Application.Features.Product.Queries;
 global using OmniMarket.Domain.Entities;
 global using OmniMarket.Application.Common.Models;
 global using AutoMapper;
+global using OmniMarket.Application.Contracts.Identity;
+global using OmniMarket.Application.Models.Identity;
