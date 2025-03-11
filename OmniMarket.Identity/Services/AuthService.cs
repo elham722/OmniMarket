@@ -84,22 +84,20 @@ namespace OmniMarket.Identity.Services
             var userClaims = await userManager.GetClaimsAsync(user);
             var roles = await userManager.GetRolesAsync(user);
 
-            var roleClaims = new List<Claim>();
-
-            for (int i = 0; i < roles.Count; i++)
-            {
-                roleClaims.Add(new Claim(ClaimTypes.Role, roles[i]));
-            }
+            var roleClaims = roles.Select(r => new Claim(ClaimTypes.Role, r));
 
             var claims = new[]
-            {
-                new Claim(JwtRegisteredClaimNames.Sub,user.UserName),
-                new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.Email,user.Email),
-                new Claim(CustomClaimTypes.Uid,user.Id)
-            }
-            .Union(userClaims)
-            .Union(roleClaims);
+                {
+                    new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                    new Claim(CustomClaimTypes.Uid, user.Id)
+                }
+                .Union(userClaims ?? Enumerable.Empty<Claim>())
+                .Union(roleClaims ?? Enumerable.Empty<Claim>());
+
+            if (string.IsNullOrEmpty(_jwtSettings.Key))
+                throw new InvalidOperationException("JWT Key cannot be null or empty.");
 
             var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
             var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
