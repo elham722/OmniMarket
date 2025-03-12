@@ -1,4 +1,7 @@
 ﻿
+using OmniMarket.Application.DTOs.User;
+
+
 namespace OmniMarket.Application.Profiles
 {
     public class MappingProfile : Profile
@@ -22,9 +25,10 @@ namespace OmniMarket.Application.Profiles
 
             CreateMap<CreateProductDto, CreateProductCommand>();
             CreateMap<UpdateProductDto, UpdateProductCommand>()
-                .ForMember(dest => dest.Id, opt => opt.Ignore()); 
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
 
             #endregion
+
 
 
         }

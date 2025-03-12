@@ -1,4 +1,7 @@
 ﻿
+using OmniMarket.Application.Contracts.Persistence;
+using OmniMarket.Identity.UnitOfWork;
+
 namespace OmniMarket.Identity.DependencyInjection
 {
   public static class IdentityServicesConfig
@@ -38,6 +41,9 @@ namespace OmniMarket.Identity.DependencyInjection
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:Key"]))
                     };
                 });
+
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<IUnitOfWork, IdentityUnitOfWork>();
 
             return services;
         }

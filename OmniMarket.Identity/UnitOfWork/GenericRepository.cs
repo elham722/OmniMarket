@@ -1,13 +1,17 @@
-﻿using OmniMarket.Application.DTOs.Base;
+﻿using OmniMarket.Application.Contracts.Persistence;
+using OmniMarket.Application.DTOs.Base;
+using OmniMarket.Domain.Entities.Common;
+using System.Linq.Expressions;
+using System.Linq;
 
-namespace OmniMarket.Persistence.Repositories
+namespace OmniMarket.Identity.UnitOfWork
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
-        private readonly OmniMarketDbContext _context;
+        private readonly IdentityDbContext _context;
         private readonly DbSet<T> _entities;
 
-        public GenericRepository(OmniMarketDbContext context)
+        public GenericRepository(IdentityDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _entities = _context.Set<T>();
@@ -59,7 +63,7 @@ namespace OmniMarket.Persistence.Repositories
         public async Task<IReadOnlyList<T>> GetAllAsync(CancellationToken cancellationToken = default)
         {
             return await _entities
-                .Where(p => !p.IsDeleted).AsNoTracking()
+                .AsNoTracking()
                 .ToListAsync(cancellationToken);
         }
 
