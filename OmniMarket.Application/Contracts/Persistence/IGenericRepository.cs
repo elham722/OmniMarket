@@ -1,7 +1,4 @@
-﻿
-using OmniMarket.Domain.Entities.Base;
-
-namespace OmniMarket.Application.Contracts.Persistence
+﻿namespace OmniMarket.Application.Contracts.Persistence
 {
     public interface IGenericRepository<T> where T : class
     {
@@ -21,6 +18,7 @@ namespace OmniMarket.Application.Contracts.Persistence
             bool orderByDescending = false,
             Expression<Func<T, bool>>? filter = null,
             CancellationToken cancellationToken = default);
+
         Task<int> GetTotalCountAsync(Expression<Func<T, bool>>? predicate = null, CancellationToken cancellationToken = default);
         Task<T> UpdateAsync(T entity, CancellationToken cancellationToken = default);
     }

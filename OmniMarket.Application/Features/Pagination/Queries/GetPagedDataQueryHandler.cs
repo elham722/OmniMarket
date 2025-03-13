@@ -1,6 +1,4 @@
-﻿using OmniMarket.Domain.Entities.Base;
-
-namespace OmniMarket.Application.Features.Pagination.Queries;
+﻿namespace OmniMarket.Application.Features.Pagination.Queries;
 
 public class GetPagedDataQueryHandler<T> : IRequestHandler<GetPagedDataQuery<T>, PagedList<T>>
     where T : class

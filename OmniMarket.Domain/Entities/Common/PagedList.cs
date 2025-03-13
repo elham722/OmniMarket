@@ -1,4 +1,4 @@
-﻿namespace OmniMarket.Domain.Entities.Base
+﻿namespace OmniMarket.Domain.Entities.Common
 {
     public class PagedList<T>
     {
