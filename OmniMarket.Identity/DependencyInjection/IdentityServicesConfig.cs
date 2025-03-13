@@ -1,6 +1,5 @@
 ﻿
 using OmniMarket.Application.Contracts.Persistence;
-using OmniMarket.Identity.UnitOfWork;
 
 namespace OmniMarket.Identity.DependencyInjection
 {
@@ -42,8 +41,7 @@ namespace OmniMarket.Identity.DependencyInjection
                     };
                 });
 
-            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            services.AddScoped<IUnitOfWork, IdentityUnitOfWork>();
+           
 
             return services;
         }

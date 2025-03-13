@@ -1,4 +1,5 @@
-﻿using OmniMarket.Application.DTOs.Base;
+﻿
+using OmniMarket.Domain.Entities.Base;
 
 namespace OmniMarket.Persistence.Repositories
 {
@@ -78,29 +79,45 @@ namespace OmniMarket.Persistence.Repositories
                 .FirstOrDefaultAsync(cancellationToken);
         }
 
-        public async Task<PagedResponse<T>> GetPagedAsync(int page, int pageSize, Expression<Func<T, object>>? orderBy = null, CancellationToken cancellationToken = default)
+        public async Task<PagedList<T>> GetPagedAsync(
+            int page,
+            int pageSize,
+            Expression<Func<T, object>>? orderBy = null,
+            bool orderByDescending = false,
+            Expression<Func<T, bool>>? filter = null,
+            CancellationToken cancellationToken = default)
         {
             if (page <= 0)
                 throw new ArgumentOutOfRangeException(nameof(page), "Page number must be greater than 0.");
             if (pageSize <= 0)
                 throw new ArgumentOutOfRangeException(nameof(pageSize), "Page size must be greater than 0.");
 
-            var query = _entities.AsNoTracking();
+            // شروع کوئری از دیتابیس
+            IQueryable<T> query = _entities.AsNoTracking();
 
-            if (orderBy != null)
+            // اعمال فیلتر اگر مقدار داشته باشد
+            if (filter != null)
             {
-                query = query.OrderBy(orderBy);
+                query = query.Where(filter);
             }
 
+            // اعمال مرتب‌سازی
+            if (orderBy != null)
+            {
+                query = orderByDescending ? query.OrderByDescending(orderBy) : query.OrderBy(orderBy);
+            }
+
+            // محاسبه تعداد کل آیتم‌ها
             var totalItems = await query.CountAsync(cancellationToken);
+
+            // دریافت داده‌های صفحه‌بندی‌شده
             var items = await query
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync(cancellationToken);
 
-            return new PagedResponse<T>(items, page, pageSize, totalItems);
+            return new PagedList<T>(items, totalItems, page, pageSize);
         }
-
         public async Task<int> GetTotalCountAsync(Expression<Func<T, bool>>? predicate = null, CancellationToken cancellationToken = default)
         {
             if (predicate == null)
