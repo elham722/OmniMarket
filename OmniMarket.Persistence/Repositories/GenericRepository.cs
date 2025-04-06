@@ -1,4 +1,5 @@
-﻿using OmniMarket.Application.Contracts.Pagination;
+﻿
+using OmniMarket.Application.Models;
 
 namespace OmniMarket.Persistence.Repositories
 {
@@ -6,13 +7,11 @@ namespace OmniMarket.Persistence.Repositories
     {
         private readonly OmniMarketDbContext _context;
         private readonly DbSet<T> _entities;
-        private readonly IPaginationService _paginationService;
 
-        public GenericRepository(OmniMarketDbContext context, IPaginationService paginationService)
+        public GenericRepository(OmniMarketDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _entities = _context.Set<T>();
-            _paginationService = paginationService;
         }
 
         public async Task<T> AddAsync(T entity, CancellationToken cancellationToken = default)
@@ -80,27 +79,20 @@ namespace OmniMarket.Persistence.Repositories
                 .FirstOrDefaultAsync(cancellationToken);
         }
 
-        public async Task<PagedList<T>> GetPagedAsync(
-            int page,
-            int pageSize,
-            Expression<Func<T, object>>? orderBy = null,
-            bool orderByDescending = false,
-            Expression<Func<T, bool>>? filter = null,
-            CancellationToken cancellationToken = default)
-        {
-            // شروع کوئری از دیتابیس
-            IQueryable<T> query = _entities.AsNoTracking().Where(e => !e.IsDeleted);
+        //public async Task<PagedResult<T>> GetPagedAsync(
+        //    int page,
+        //    int pageSize,
+        //    Expression<Func<T, object>>? orderBy = null,
+        //    bool orderByDescending = false,
+        //    Expression<Func<T, bool>>? filter = null,
+        //    CancellationToken cancellationToken = default)
+        //{
+        //    // شروع کوئری از دیتابیس
+        //    IQueryable<T> query = _entities.AsNoTracking().Where(e => !e.IsDeleted);
 
-            // واگذاری صفحه‌بندی به PaginationService
-            return await _paginationService.CreatePagedListAsync(
-                source: query,
-                pageNumber: page,
-                pageSize: pageSize,
-                orderBy: orderBy,
-                orderByDescending: orderByDescending,
-                filter: filter,
-                cancellationToken: cancellationToken);
-        }
+        //    // واگذاری صفحه‌بندی به PaginationService
+        //    return await _paginationService.GetPaginatedAsync( page, pageSize);
+        //}
         public async Task<int> GetTotalCountAsync(Expression<Func<T, bool>>? predicate = null, CancellationToken cancellationToken = default)
         {
             if (predicate == null)

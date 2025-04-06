@@ -1,6 +1,4 @@
 ﻿
-using OmniMarket.Application.Contracts.Persistence;
-
 namespace OmniMarket.Identity.DependencyInjection
 {
   public static class IdentityServicesConfig
@@ -41,8 +39,7 @@ namespace OmniMarket.Identity.DependencyInjection
                     };
                 });
 
-           
-
+          
             return services;
         }
     }

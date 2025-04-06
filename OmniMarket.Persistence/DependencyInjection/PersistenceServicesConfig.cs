@@ -1,6 +1,4 @@
-﻿using OmniMarket.Application.Contracts.Pagination;
-using OmniMarket.Persistence.Services;
-
+﻿
 namespace OmniMarket.Persistence.DependencyInjection
 {
     public static class PersistenceServicesConfig
@@ -20,7 +18,6 @@ namespace OmniMarket.Persistence.DependencyInjection
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<IPaginationService, PaginationService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             #endregion
