@@ -1,9 +1,12 @@
 ﻿
 namespace OmniMarket.Identity.Context
 {
-    public class OmniMarketIdentityDbContext(DbContextOptions<OmniMarketIdentityDbContext> options) 
-        : IdentityDbContext<ApplicationUser>(options)
+    public class OmniMarketIdentityDbContext : IdentityDbContext<ApplicationUser>
     {
+        public OmniMarketIdentityDbContext(DbContextOptions<OmniMarketIdentityDbContext> options):base(options)
+        {
+            
+        }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

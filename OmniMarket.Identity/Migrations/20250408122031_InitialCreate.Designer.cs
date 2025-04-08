@@ -12,8 +12,8 @@ using OmniMarket.Identity.Context;
 namespace OmniMarket.Identity.Migrations
 {
     [DbContext(typeof(OmniMarketIdentityDbContext))]
-    [Migration("20250311072115_addidentity")]
-    partial class addidentity
+    [Migration("20250408122031_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -192,6 +192,9 @@ namespace OmniMarket.Identity.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("Avatar")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -207,6 +210,9 @@ namespace OmniMarket.Identity.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -263,17 +269,18 @@ namespace OmniMarket.Identity.Migrations
                         {
                             Id = "05446344-f9cc-4566-bd2c-36791b4e28ed",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "dfe81e6c-cd64-44b0-8b5c-1c5784711898",
+                            ConcurrencyStamp = "154fe855-b2a6-41b7-a769-062baf044d11",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "Elham",
+                            IsActive = false,
                             LastName = "Heydari",
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ELHAM72",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHgFbAhDPgto7MEBeLsL/q3MOp4FGurvZF93MiXrTrjYH0xGeadvFzyBX1PCohaawA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDZiGia9j7bnGPCCn+kgJoblna8wNxqxqENw44y2LOCZ7POEeDL9bkuXJBdamgtiyA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9e3ad190-be86-4819-9087-e66cc1058094",
+                            SecurityStamp = "89e5890c-59b3-47b4-ad1f-0d09db5853cc",
                             TwoFactorEnabled = false,
                             UserName = "elham72"
                         },
@@ -281,17 +288,18 @@ namespace OmniMarket.Identity.Migrations
                         {
                             Id = "2ec9f480-7288-4d0f-a1cd-53cc89968b45",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fb30a7be-9063-4df7-ac5f-d31cdb0d386f",
+                            ConcurrencyStamp = "c5f3da60-6294-4c08-97d0-ea6d5ccdea5a",
                             Email = "user@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
+                            IsActive = false,
                             LastName = "User",
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEI6vBjlmNd6Q0aKgG/kgsxaeYhJxtXOrKvgi5J1LHRutCa6Gc8ucj4K7DJPZYYqo9Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAED8oT5mg6w2RyioD8GrgKxyyygduS0Z5PL4DXaZhx5MuVfhgsGrxhQ2R+4PY1cI2NQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "07e1116d-e7ee-4d1a-9acd-52350a9e5c4d",
+                            SecurityStamp = "e74fb733-aece-436b-b743-21e10c5feb05",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         });

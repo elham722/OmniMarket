@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OmniMarket.Identity.Migrations
 {
     /// <inheritdoc />
-    public partial class addidentity : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,6 +34,8 @@ namespace OmniMarket.Identity.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    Avatar = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -171,11 +173,11 @@ namespace OmniMarket.Identity.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                columns: new[] { "Id", "AccessFailedCount", "Avatar", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsActive", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "05446344-f9cc-4566-bd2c-36791b4e28ed", 0, "dfe81e6c-cd64-44b0-8b5c-1c5784711898", "admin@localhost.com", true, "Elham", "Heydari", false, null, "ADMIN@LOCALHOST.COM", "ELHAM72", "AQAAAAIAAYagAAAAEHgFbAhDPgto7MEBeLsL/q3MOp4FGurvZF93MiXrTrjYH0xGeadvFzyBX1PCohaawA==", null, false, "9e3ad190-be86-4819-9087-e66cc1058094", false, "elham72" },
-                    { "2ec9f480-7288-4d0f-a1cd-53cc89968b45", 0, "fb30a7be-9063-4df7-ac5f-d31cdb0d386f", "user@localhost.com", true, "System", "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAIAAYagAAAAEI6vBjlmNd6Q0aKgG/kgsxaeYhJxtXOrKvgi5J1LHRutCa6Gc8ucj4K7DJPZYYqo9Q==", null, false, "07e1116d-e7ee-4d1a-9acd-52350a9e5c4d", false, "user@localhost.com" }
+                    { "05446344-f9cc-4566-bd2c-36791b4e28ed", 0, null, "154fe855-b2a6-41b7-a769-062baf044d11", "admin@localhost.com", true, "Elham", false, "Heydari", false, null, "ADMIN@LOCALHOST.COM", "ELHAM72", "AQAAAAIAAYagAAAAEDZiGia9j7bnGPCCn+kgJoblna8wNxqxqENw44y2LOCZ7POEeDL9bkuXJBdamgtiyA==", null, false, "89e5890c-59b3-47b4-ad1f-0d09db5853cc", false, "elham72" },
+                    { "2ec9f480-7288-4d0f-a1cd-53cc89968b45", 0, null, "c5f3da60-6294-4c08-97d0-ea6d5ccdea5a", "user@localhost.com", true, "System", false, "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAIAAYagAAAAED8oT5mg6w2RyioD8GrgKxyyygduS0Z5PL4DXaZhx5MuVfhgsGrxhQ2R+4PY1cI2NQ==", null, false, "e74fb733-aece-436b-b743-21e10c5feb05", false, "user@localhost.com" }
                 });
 
             migrationBuilder.InsertData(
