@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OmniMarket.Application\OmniMarket.Application.csproj" />
-    <ProjectReference Include="..\OmniMarket.Infrastructure\OmniMarket.Infrastructure.csproj" />
+    <ProjectReference Include="..\OmniMarket.Infrastructure\OmniMarket.Infrastructure.Common.csproj" />
   </ItemGroup>
 
 </Project>

@@ -6,6 +6,7 @@ namespace OmniMarket.Identity.DependencyInjection
         public static IServiceCollection AddIdentityServices(this IServiceCollection services,IConfiguration configuration)
         {
             services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
+
             services.AddDbContext<OmniMarketIdentityDbContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("OmniMarketIdentityConnectionString"),
@@ -13,11 +14,14 @@ namespace OmniMarket.Identity.DependencyInjection
                 );
             });
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+                {
+                    options.Password.RequireDigit = true;
+                    options.User.RequireUniqueEmail= true;
+                })
                 .AddEntityFrameworkStores<OmniMarketIdentityDbContext>().AddDefaultTokenProviders();
 
             services.AddTransient<IAuthService, AuthService>();
-            //services.AddTransient<IUserService,UserService>();
 
             services.AddAuthentication(options =>
                 {

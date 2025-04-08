@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{02EA681E-C7D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{2121B39E-23AF-4AEA-8976-2DE9A3C528D9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EndPoint", "EndPoint", "{FF1C0839-375C-4C23-9869-39CBD7B628D7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{FF1C0839-375C-4C23-9869-39CBD7B628D7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{BC4AE071-07C8-462C-91D3-D38254059A82}"
 EndProject
@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmniMarket.Domain", "OmniMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmniMarket.Application", "OmniMarket.Application\OmniMarket.Application.csproj", "{F6BB5F03-3A15-4EA3-BD0B-843F9FD2FE6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmniMarket.Infrastructure", "OmniMarket.Infrastructure\OmniMarket.Infrastructure.csproj", "{4FBCD271-03BB-4589-A390-C57E337DEB27}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmniMarket.Infrastructure.Common", "OmniMarket.Infrastructure\OmniMarket.Infrastructure.Common.csproj", "{4FBCD271-03BB-4589-A390-C57E337DEB27}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmniMarket.Persistence", "OmniMarket.Persistence\OmniMarket.Persistence.csproj", "{9427F702-83B2-4638-AE7C-6314408A473B}"
 EndProject
@@ -32,6 +32,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmniMarket.Identity", "OmniMarket.Identity\OmniMarket.Identity.csproj", "{2EAAC383-C07E-4E43-AFAE-A10F6F2D04D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmniMarket.Admin", "OmniMarket.Admin\OmniMarket.Admin.csproj", "{FE7A08D9-7D0D-483C-9AC2-BB50BD68F1BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{4B510990-45D9-488D-9C8A-F160D31AD108}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
