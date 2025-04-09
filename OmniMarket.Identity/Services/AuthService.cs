@@ -1,11 +1,13 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using OmniMarket.Application.Exceptions;
 
 namespace OmniMarket.Identity.Services
 {
     public class AuthService(UserManager<ApplicationUser> userManager,
         IOptions<JwtSettings> jwtSettings,
-        SignInManager<ApplicationUser> signInManager) : IAuthService
+        SignInManager<ApplicationUser> signInManager,
+        OmniMarketIdentityDbContext context) : IAuthService
     {
         private readonly JwtSettings _jwtSettings = jwtSettings.Value;
       
@@ -67,17 +69,65 @@ namespace OmniMarket.Identity.Services
 
             JwtSecurityToken jwtSecurityToken = await GenerateToken(user);
 
+            var refreshToken = new RefreshToken
+            {
+                Token = Guid.NewGuid().ToString(),
+                UserId = user.Id,
+                ExpiryDate = DateTime.UtcNow.AddDays(7),
+                CreatedDate = DateTime.UtcNow,
+                IsUsed = false,
+                IsRevoked = false
+            };
+
+            await context.RefreshTokens.AddAsync(refreshToken);
+            await context.SaveChangesAsync();
+
+
             AuthResponse response = new AuthResponse()
             {
                 Id = user.Id,
                 Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
                 Email = user.Email,
                 UserName = user.UserName,
+                RefreshToken = refreshToken.Token
             };
 
             return response;
 
         }
+
+        public async Task<AuthResponse> RefreshToken(string refreshToken)
+        {
+            // پیدا کردن RefreshToken در دیتابیس
+            var token = await context.RefreshTokens
+                .Include(rt => rt.User) // کاربران رو هم لود می‌کنیم
+                .FirstOrDefaultAsync(t => t.Token == refreshToken);
+
+            // چک کردن اعتبار توکن
+            if (token == null || token.IsUsed || token.IsRevoked || token.ExpiryDate < DateTime.UtcNow)
+            {
+                throw new SecurityTokenException("Invalid refresh token");
+            }
+
+            // مارک کردن RefreshToken به عنوان استفاده‌شده
+            token.IsUsed = true;
+            context.RefreshTokens.Update(token);
+            await context.SaveChangesAsync();
+
+            // تولید Access Token جدید
+            var newAccessToken = await GenerateToken(token.User);
+
+            // برگرداندن پاسخ با Access Token جدید و یک Refresh Token جدید
+            return new AuthResponse
+            {
+                Id = token.User.Id,
+                Email = token.User.Email,
+                UserName = token.User.UserName,
+                Token = new JwtSecurityTokenHandler().WriteToken(newAccessToken),
+                RefreshToken = Guid.NewGuid().ToString() // تولید Refresh Token جدید
+            };
+        }
+
 
         private async Task<JwtSecurityToken> GenerateToken(ApplicationUser user)
         {

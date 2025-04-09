@@ -12,8 +12,8 @@ using OmniMarket.Identity.Context;
 namespace OmniMarket.Identity.Migrations
 {
     [DbContext(typeof(OmniMarketIdentityDbContext))]
-    [Migration("20250408122031_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250408131619_firstmig")]
+    partial class firstmig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -269,7 +269,7 @@ namespace OmniMarket.Identity.Migrations
                         {
                             Id = "05446344-f9cc-4566-bd2c-36791b4e28ed",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "154fe855-b2a6-41b7-a769-062baf044d11",
+                            ConcurrencyStamp = "4debca57-cece-40d0-ab15-8e426c06c3ac",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "Elham",
@@ -278,9 +278,9 @@ namespace OmniMarket.Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ELHAM72",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDZiGia9j7bnGPCCn+kgJoblna8wNxqxqENw44y2LOCZ7POEeDL9bkuXJBdamgtiyA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPd68SDsH3K31k2pEwljfvuSibgTB8nLJG86yFH4BoZXmfeolFAQJAgp1Q3HJs8e9w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "89e5890c-59b3-47b4-ad1f-0d09db5853cc",
+                            SecurityStamp = "51e34a18-b1aa-4ff5-907f-a4539501db86",
                             TwoFactorEnabled = false,
                             UserName = "elham72"
                         },
@@ -288,7 +288,7 @@ namespace OmniMarket.Identity.Migrations
                         {
                             Id = "2ec9f480-7288-4d0f-a1cd-53cc89968b45",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c5f3da60-6294-4c08-97d0-ea6d5ccdea5a",
+                            ConcurrencyStamp = "0dd1ea6d-c492-43c3-b526-97ddfa3e188b",
                             Email = "user@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -297,12 +297,47 @@ namespace OmniMarket.Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAED8oT5mg6w2RyioD8GrgKxyyygduS0Z5PL4DXaZhx5MuVfhgsGrxhQ2R+4PY1cI2NQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOAq2uxU8D/WOtubA0o7uELH2c67ykblrs3XmsFcync9pojYDkFSmhKaS2EC6jA8dg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e74fb733-aece-436b-b743-21e10c5feb05",
+                            SecurityStamp = "79768247-a49c-47be-be9b-a1807291ae18",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         });
+                });
+
+            modelBuilder.Entity("OmniMarket.Identity.Models.RefreshToken", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ExpiryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsRevoked")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsUsed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RefreshTokens");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -354,6 +389,17 @@ namespace OmniMarket.Identity.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("OmniMarket.Identity.Models.RefreshToken", b =>
+                {
+                    b.HasOne("OmniMarket.Identity.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

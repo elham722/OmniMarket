@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.IdentityModel.Tokens;
 using OmniMarket.Application.Exceptions;
 
 namespace OmniMarket.Api.Controllers
@@ -52,6 +53,27 @@ namespace OmniMarket.Api.Controllers
                 return StatusCode(500, "An error occurred during registration.");
             }
         }
+
+
+        [HttpPost("refresh")]
+        public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest model)
+        {
+            try
+            {
+                var response = await authService.RefreshToken(model.RefreshToken);
+                return Ok(response);
+            }
+            catch (SecurityTokenException ex)
+            {
+                return Unauthorized(ex.Message); // مثلا خطای غیرمعتبر بودن توکن
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred during token refresh.");
+            }
+        }
+
+
 
 
     }

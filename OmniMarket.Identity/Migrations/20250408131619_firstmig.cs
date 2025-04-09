@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OmniMarket.Identity.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class firstmig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -162,6 +162,30 @@ namespace OmniMarket.Identity.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "RefreshTokens",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Token = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsUsed = table.Column<bool>(type: "bit", nullable: false),
+                    IsRevoked = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RefreshTokens", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RefreshTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
@@ -176,8 +200,8 @@ namespace OmniMarket.Identity.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "Avatar", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsActive", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "05446344-f9cc-4566-bd2c-36791b4e28ed", 0, null, "154fe855-b2a6-41b7-a769-062baf044d11", "admin@localhost.com", true, "Elham", false, "Heydari", false, null, "ADMIN@LOCALHOST.COM", "ELHAM72", "AQAAAAIAAYagAAAAEDZiGia9j7bnGPCCn+kgJoblna8wNxqxqENw44y2LOCZ7POEeDL9bkuXJBdamgtiyA==", null, false, "89e5890c-59b3-47b4-ad1f-0d09db5853cc", false, "elham72" },
-                    { "2ec9f480-7288-4d0f-a1cd-53cc89968b45", 0, null, "c5f3da60-6294-4c08-97d0-ea6d5ccdea5a", "user@localhost.com", true, "System", false, "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAIAAYagAAAAED8oT5mg6w2RyioD8GrgKxyyygduS0Z5PL4DXaZhx5MuVfhgsGrxhQ2R+4PY1cI2NQ==", null, false, "e74fb733-aece-436b-b743-21e10c5feb05", false, "user@localhost.com" }
+                    { "05446344-f9cc-4566-bd2c-36791b4e28ed", 0, null, "4debca57-cece-40d0-ab15-8e426c06c3ac", "admin@localhost.com", true, "Elham", false, "Heydari", false, null, "ADMIN@LOCALHOST.COM", "ELHAM72", "AQAAAAIAAYagAAAAEPd68SDsH3K31k2pEwljfvuSibgTB8nLJG86yFH4BoZXmfeolFAQJAgp1Q3HJs8e9w==", null, false, "51e34a18-b1aa-4ff5-907f-a4539501db86", false, "elham72" },
+                    { "2ec9f480-7288-4d0f-a1cd-53cc89968b45", 0, null, "0dd1ea6d-c492-43c3-b526-97ddfa3e188b", "user@localhost.com", true, "System", false, "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAIAAYagAAAAEOAq2uxU8D/WOtubA0o7uELH2c67ykblrs3XmsFcync9pojYDkFSmhKaS2EC6jA8dg==", null, false, "79768247-a49c-47be-be9b-a1807291ae18", false, "user@localhost.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -227,6 +251,11 @@ namespace OmniMarket.Identity.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RefreshTokens_UserId",
+                table: "RefreshTokens",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -246,6 +275,9 @@ namespace OmniMarket.Identity.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "RefreshTokens");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

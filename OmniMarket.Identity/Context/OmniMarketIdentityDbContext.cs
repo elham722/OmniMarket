@@ -1,12 +1,10 @@
 ﻿
 namespace OmniMarket.Identity.Context
 {
-    public class OmniMarketIdentityDbContext : IdentityDbContext<ApplicationUser>
+    public class OmniMarketIdentityDbContext(DbContextOptions<OmniMarketIdentityDbContext> options) : IdentityDbContext<ApplicationUser>(options)
     {
-        public OmniMarketIdentityDbContext(DbContextOptions<OmniMarketIdentityDbContext> options):base(options)
-        {
-            
-        }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

@@ -7,5 +7,6 @@ namespace OmniMarket.Application.Contracts.Identity
    {
        Task<AuthResponse> Login(AuthRequest request);
        Task<RegistrationResponse> Register(RegisterationRequest request);
+       Task<AuthResponse> RefreshToken(string refreshToken);
    }
 }
