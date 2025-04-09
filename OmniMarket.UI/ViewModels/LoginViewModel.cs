@@ -1,4 +1,4 @@
-﻿namespace OmniMarket.Web.Models
+﻿namespace OmniMarket.Web.ViewModels
 {
     public class LoginViewModel
     {

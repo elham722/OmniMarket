@@ -1,5 +1,5 @@
 ﻿using OmniMarket.Web.Contracts;
-using OmniMarket.Web.Models;
+using OmniMarket.Web.ViewModels;
 
 namespace OmniMarket.Web.Controllers
 {

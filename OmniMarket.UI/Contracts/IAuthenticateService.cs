@@ -1,4 +1,4 @@
-﻿using OmniMarket.Web.Models;
+﻿using OmniMarket.Web.ViewModels;
 
 namespace OmniMarket.Web.Contracts
 {

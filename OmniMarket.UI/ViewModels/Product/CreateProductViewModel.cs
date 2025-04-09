@@ -1,4 +1,4 @@
-﻿namespace OmniMarket.Web.Models.Product
+﻿namespace OmniMarket.Web.ViewModels.Product
 {
     public class CreateProductViewModel : ProductFormViewModel
     {

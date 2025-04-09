@@ -1,6 +1,6 @@
 ﻿using OmniMarket.Web.Contracts;
-using OmniMarket.Web.Models;
 using OmniMarket.Web.Services.Base;
+using OmniMarket.Web.ViewModels;
 
 namespace OmniMarket.Web.Services
 {
