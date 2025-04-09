@@ -1,5 +1,6 @@
-﻿
-namespace OmniMarket.UI.Contracts
+﻿using OmniMarket.Web.Models.Product;
+
+namespace OmniMarket.Web.Contracts
 {
     public interface IProductService
     {

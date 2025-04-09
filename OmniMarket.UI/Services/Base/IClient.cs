@@ -1,5 +1,4 @@
-﻿
-namespace OmniMarket.UI.Services.Base
+﻿namespace OmniMarket.Web.Services.Base
 {
     //public partial interface IClient
     //{

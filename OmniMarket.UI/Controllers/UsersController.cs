@@ -1,5 +1,7 @@
-﻿
-namespace OmniMarket.UI.Controllers
+﻿using OmniMarket.Web.Contracts;
+using OmniMarket.Web.Models;
+
+namespace OmniMarket.Web.Controllers
 {
     public class UsersController : Controller
     {

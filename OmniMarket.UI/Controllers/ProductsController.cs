@@ -1,5 +1,7 @@
-﻿
-namespace OmniMarket.UI.Controllers
+﻿using OmniMarket.Web.Contracts;
+using OmniMarket.Web.Models.Product;
+
+namespace OmniMarket.Web.Controllers
 {
     [Authorize]
     public class ProductsController(IProductService productService) : Controller

@@ -1,5 +1,6 @@
-﻿
-namespace OmniMarket.UI.Services
+﻿using OmniMarket.Web.Contracts;
+
+namespace OmniMarket.Web.Services
 {
     public class LocalStorageService : ILocalStorageService
     {

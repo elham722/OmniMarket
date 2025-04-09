@@ -1,5 +1,4 @@
-﻿
-namespace OmniMarket.UI.Models
+﻿namespace OmniMarket.Web.Models
 {
     public class RegisterViewModel
     {

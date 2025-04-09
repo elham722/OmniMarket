@@ -1,5 +1,8 @@
-﻿
-namespace OmniMarket.UI.Services
+﻿using OmniMarket.Web.Contracts;
+using OmniMarket.Web.Models.Product;
+using OmniMarket.Web.Services.Base;
+
+namespace OmniMarket.Web.Services
 {
     public class ProductService(IClient client, ILocalStorageService localStorage, IMapper mapper) : BaseHttpService(client, localStorage), IProductService
     {

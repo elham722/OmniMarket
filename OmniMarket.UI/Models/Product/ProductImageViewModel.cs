@@ -1,4 +1,4 @@
-﻿namespace OmniMarket.UI.Models.Product
+﻿namespace OmniMarket.Web.Models.Product
 {
     public class ProductImageViewModel
     {

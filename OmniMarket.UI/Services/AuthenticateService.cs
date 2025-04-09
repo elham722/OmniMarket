@@ -1,5 +1,8 @@
-﻿
-namespace OmniMarket.UI.Services
+﻿using OmniMarket.Web.Contracts;
+using OmniMarket.Web.Models;
+using OmniMarket.Web.Services.Base;
+
+namespace OmniMarket.Web.Services
 {
     public class AuthenticateService(IClient client, ILocalStorageService localStorage, IHttpContextAccessor httpContextAccessor) 
         : BaseHttpService(client, localStorage), IAuthenticateService

@@ -1,5 +1,6 @@
-﻿
-namespace OmniMarket.UI.Services.Base
+﻿using OmniMarket.Web.Contracts;
+
+namespace OmniMarket.Web.Services.Base
 {
     public class BaseHttpService(IClient client, ILocalStorageService localStorage)
     {

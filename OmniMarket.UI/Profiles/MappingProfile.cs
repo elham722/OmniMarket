@@ -1,5 +1,6 @@
-﻿
-namespace OmniMarket.UI.Profiles
+﻿using OmniMarket.Web.Models.Product;
+
+namespace OmniMarket.Web.Profiles
 {
     public class MappingProfile : Profile
     {

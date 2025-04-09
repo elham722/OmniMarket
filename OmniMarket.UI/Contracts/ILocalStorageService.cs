@@ -1,4 +1,4 @@
-﻿namespace OmniMarket.UI.Contracts
+﻿namespace OmniMarket.Web.Contracts
 {
     public interface ILocalStorageService
     {
