@@ -1,6 +1,6 @@
 ﻿
-using OmniMarket.Application.DTOs.User;
-
+using OmniMarket.Common.Dtos.Product;
+using OmniMarket.Common.Dtos.ProductImage;
 
 namespace OmniMarket.Application.Profiles
 {

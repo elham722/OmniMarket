@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OmniMarket.Application\OmniMarket.Application.csproj" />
+    <ProjectReference Include="..\OmniMarket.Common.Dtos\OmniMarket.Common.Dtos.csproj" />
     <ProjectReference Include="..\OmniMarket.Identity\OmniMarket.Identity.csproj" />
     <ProjectReference Include="..\OmniMarket.Infrastructure\OmniMarket.Infrastructure.Common.csproj" />
     <ProjectReference Include="..\OmniMarket.Persistence\OmniMarket.Persistence.csproj" />

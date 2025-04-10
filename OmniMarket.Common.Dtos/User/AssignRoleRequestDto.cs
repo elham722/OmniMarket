@@ -1,5 +1,4 @@
-﻿
-namespace OmniMarket.Application.DTOs.User
+﻿namespace OmniMarket.Common.Dtos.User
 {
    public class AssignRoleRequestDto
     {

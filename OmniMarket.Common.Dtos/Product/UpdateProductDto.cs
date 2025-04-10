@@ -1,5 +1,5 @@
 ﻿
-namespace OmniMarket.Application.DTOs.Product
+namespace OmniMarket.Common.Dtos.Product
 {
    public class UpdateProductDto:BaseDto
     {

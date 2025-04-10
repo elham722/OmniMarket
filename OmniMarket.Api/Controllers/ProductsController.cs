@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Authorization;
 using OmniMarket.Application.Exceptions;
+using OmniMarket.Common.Dtos.Product;
 
 namespace OmniMarket.Api.Controllers
 {

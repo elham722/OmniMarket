@@ -1,4 +1,5 @@
-﻿using OmniMarket.Web.Contracts;
+﻿using OmniMarket.Common.Dtos.Product;
+using OmniMarket.Web.Contracts;
 using OmniMarket.Web.Services.Base;
 using OmniMarket.Web.ViewModels.Product;
 

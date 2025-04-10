@@ -9,5 +9,4 @@ global using OmniMarket.Application.Features.Product.Commands;
 global using OmniMarket.Domain.Entities;
 global using OmniMarket.Application.Contracts.Persistence;
 global using Xunit;
-global using OmniMarket.Application.DTOs.ProductImage;
 global using OmniMarket.Application.Profiles;

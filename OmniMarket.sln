@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmniMarket.Admin", "OmniMar
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{4B510990-45D9-488D-9C8A-F160D31AD108}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmniMarket.Common.Dtos", "OmniMarket.Common.Dtos\OmniMarket.Common.Dtos.csproj", "{636411DA-44A1-4FDA-A674-939838C75E6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{FE7A08D9-7D0D-483C-9AC2-BB50BD68F1BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE7A08D9-7D0D-483C-9AC2-BB50BD68F1BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE7A08D9-7D0D-483C-9AC2-BB50BD68F1BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{636411DA-44A1-4FDA-A674-939838C75E6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{636411DA-44A1-4FDA-A674-939838C75E6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{636411DA-44A1-4FDA-A674-939838C75E6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{636411DA-44A1-4FDA-A674-939838C75E6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +101,7 @@ Global
 		{BA95FB92-85CB-4ECD-8C04-D07738A5EA32} = {C0504713-94EA-4F20-87E6-DDB3081C7FC5}
 		{2EAAC383-C07E-4E43-AFAE-A10F6F2D04D0} = {B8CF573E-7324-49DC-BBC6-56B0CA48254F}
 		{FE7A08D9-7D0D-483C-9AC2-BB50BD68F1BD} = {C0504713-94EA-4F20-87E6-DDB3081C7FC5}
+		{636411DA-44A1-4FDA-A674-939838C75E6B} = {BC4AE071-07C8-462C-91D3-D38254059A82}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CD6A6F4B-C1BE-45C9-AFC1-6F8B89F43D3D}

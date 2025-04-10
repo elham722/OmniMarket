@@ -1,4 +1,6 @@
 ﻿
+using OmniMarket.Common.Dtos.ProductImage;
+
 namespace OmniMarket.Tests.Products.Commands
 {
     public class CreateProductCommandHandlerTests

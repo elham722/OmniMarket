@@ -1,4 +1,6 @@
-﻿namespace OmniMarket.Application.Features.Product.Queries
+﻿using OmniMarket.Common.Dtos.Product;
+
+namespace OmniMarket.Application.Features.Product.Queries
 {
    public class GetProductByIdQuery :IRequest<ProductDto>
     {

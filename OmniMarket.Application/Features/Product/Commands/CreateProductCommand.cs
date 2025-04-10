@@ -1,5 +1,6 @@
 ﻿
 using OmniMarket.Application.Responses;
+using OmniMarket.Common.Dtos.ProductImage;
 
 namespace OmniMarket.Application.Features.Product.Commands
 {

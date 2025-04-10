@@ -3,11 +3,11 @@ using OmniMarket.Web.ViewModels;
 
 namespace OmniMarket.Web.Controllers
 {
-    public class UsersController : Controller
+    public class AccountController : Controller
     {
         private readonly IAuthenticateService _authenticateService;
 
-        public UsersController(IAuthenticateService authenticateService)
+        public AccountController(IAuthenticateService authenticateService)
         {
             _authenticateService = authenticateService;
         }

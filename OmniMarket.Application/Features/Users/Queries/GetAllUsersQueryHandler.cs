@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using OmniMarket.Application.DTOs.User;
+using OmniMarket.Common.Dtos.User;
 
 namespace OmniMarket.Application.Features.Users.Queries
 {

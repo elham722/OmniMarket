@@ -17,5 +17,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\OmniMarket.Application\OmniMarket.Application.csproj" />
+	  <ProjectReference Include="..\OmniMarket.Common.Dtos\OmniMarket.Common.Dtos.csproj" />
 	</ItemGroup>
 </Project>

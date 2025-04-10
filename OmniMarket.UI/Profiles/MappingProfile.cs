@@ -1,4 +1,6 @@
-﻿using OmniMarket.Web.ViewModels.Product;
+﻿using OmniMarket.Common.Dtos.Product;
+using OmniMarket.Common.Dtos.ProductImage;
+using OmniMarket.Web.ViewModels.Product;
 
 namespace OmniMarket.Web.Profiles
 {

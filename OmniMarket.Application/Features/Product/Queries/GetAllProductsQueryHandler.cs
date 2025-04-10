@@ -1,4 +1,6 @@
 ﻿
+using OmniMarket.Common.Dtos.Product;
+
 namespace OmniMarket.Application.Features.Product.Queries
 {
     public class GetAllProductsQueryHandler(IProductRepository productRepository, IMapper mapper)

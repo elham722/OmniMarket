@@ -1,3 +1,5 @@
+using OmniMarket.Common.Dtos.Product;
+
 #pragma warning disable 108
 #pragma warning disable 114
 #pragma warning disable 472

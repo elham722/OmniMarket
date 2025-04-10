@@ -1,5 +1,6 @@
-﻿
-namespace OmniMarket.Application.DTOs.Product.Validators
+﻿using OmniMarket.Common.Dtos.Product;
+
+namespace OmniMarket.Application.Validators
 {
     public class CreateProductDtoValidator : AbstractValidator<CreateProductDto>
     {

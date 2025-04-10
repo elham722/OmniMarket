@@ -1,5 +1,5 @@
 ﻿
-namespace OmniMarket.Application.DTOs.ProductImage
+namespace OmniMarket.Common.Dtos.ProductImage
 {
     public class ProductImageDto : BaseDto
     {

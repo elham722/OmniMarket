@@ -1,5 +1,4 @@
-﻿
-namespace OmniMarket.Application.DTOs.Common
+﻿namespace OmniMarket.Common.Dtos.Common
 {
     public abstract class BaseDto
     {

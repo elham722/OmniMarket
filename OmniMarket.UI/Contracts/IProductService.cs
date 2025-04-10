@@ -1,4 +1,5 @@
-﻿using OmniMarket.Web.ViewModels.Product;
+﻿using OmniMarket.Application.Common.Models;
+using OmniMarket.Web.ViewModels.Product;
 
 namespace OmniMarket.Web.Contracts
 {

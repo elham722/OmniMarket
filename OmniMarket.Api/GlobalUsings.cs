@@ -6,7 +6,6 @@ global using System.Threading.Tasks;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.AspNetCore.Http;
 global using MediatR;
-global using OmniMarket.Application.DTOs.Product;
 global using OmniMarket.Application.Features.Product.Commands;
 global using OmniMarket.Application.Features.Product.Queries;
 global using OmniMarket.Domain.Entities;
